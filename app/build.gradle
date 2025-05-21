@@ -32,6 +32,7 @@ android {
         python {
             version "3.8"
             pip {
+                install "sgp4==2.21" // Add this line
                 install "skyfield"
                 install "pytz"
             }

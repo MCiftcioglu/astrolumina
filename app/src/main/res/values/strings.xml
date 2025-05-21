@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name" translatable="false">Astro Lumina</string>
+    <string name="action_go" translatable="false">Go</string>
+    <string name="baking_title" translatable="false">Baking with Gemini</string>
+    <string name="label_prompt" translatable="false">Prompt</string>
+    <string name="prompt_placeholder" translatable="false">Provide a recipe for the baked goods in the image</string>
+    <string name="image1_description" translatable="false">Cupcake</string>
+    <string name="image2_description" translatable="false">Cookies</string>
+    <string name="image3_description" translatable="false">Cake</string>
+    <string name="results_placeholder" translatable="false">(Results will appear here)</string>
+
+    <!-- Home ekranı metinleri -->
+    <string name="welcome_text">Hoş geldin</string>
+    <string name="logout_button">Çıkış Yap</string>
+    <string name="profile_photo">Profil Fotoğrafı</string>
+    <string name="select_photo">Fotoğraf Seç</string>
+    <string name="name_hint">Adınız</string>
+    <string name="birth_date_hint">Doğum Tarihi (GG/AA/YYYY)</string>
+    <string name="birth_time_hint">Doğum Saati (SS:dd)</string>
+    <string name="birth_place_hint">Doğum Yeri</string>
+    <string name="save_button">Kaydet</string>
+
+    <string name="welcome_message">Hoş geldin, %1$s</string>
+    <string name="home_subtitle">Doğum haritanı keşfet, burç uyumunu öğren, astrolojinin keyfini çıkar.</string>
+    <string name="title_daily_horoscope">Günlük Burç</string>
+    <string name="title_birth_chart">Doğum Haritası</string>
+    <string name="title_cosmic_match">Kozmik Bağlantılar</string>
+    <string name="title_vedic_astrology">Vedik Astroloji</string>
+    <string name="logout_button">Çıkış Yap</string>
+
+
+
+
+
+
+
+
+
+
+
+</resources>

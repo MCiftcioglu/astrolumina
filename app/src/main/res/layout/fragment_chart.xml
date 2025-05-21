@@ -1,0 +1,77 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/chartRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0D1B2A"
+    android:padding="16dp">
+
+    <!-- 🌙 Arka plan ay görseli -->
+    <ImageView
+        android:id="@+id/imageChartBackground"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:src="@drawable/bg_moon"
+        android:layout_gravity="center"
+        android:alpha="0.15"
+        android:scaleType="centerCrop" />
+
+    <!-- 📜 İçerik alanı -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Başlık -->
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Doğum Haritanız"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Burç bilgisi kartları -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:id="@+id/textSunSign"
+                    style="@style/AstroCardStyle"
+                    android:text="☀ Koç" />
+
+                <TextView
+                    android:id="@+id/textMoonSign"
+                    style="@style/AstroCardStyle"
+                    android:text="🌙 Yay" />
+
+                <TextView
+                    android:id="@+id/textRisingSign"
+                    style="@style/AstroCardStyle"
+                    android:text="⬆ Aslan" />
+            </LinearLayout>
+
+            <!-- Gemini API yorum alanı -->
+            <TextView
+                android:id="@+id/textChart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#EEEEEE"
+                android:textSize="16sp"
+                android:lineSpacingExtra="6dp"
+                android:padding="12dp"
+                android:background="@drawable/round_card_background"
+                android:layout_marginBottom="16dp" />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

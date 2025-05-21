@@ -1,0 +1,19 @@
+<resources>
+    <string name="profile_photo">Profile Photo</string>
+    <string name="select_photo">Select Photo</string>
+    <string name="name_hint">Your Name</string>
+    <string name="birth_date_hint">Birth Date (DD/MM/YYYY)</string>
+    <string name="birth_time_hint">Birth Time (HH:mm)</string>
+    <string name="birth_place_hint">Place of Birth</string>
+    <string name="save_button">Save</string>
+
+    <string name="welcome_message">Welcome, %1$s</string>
+    <string name="home_subtitle">Discover your birth chart, explore zodiac matches, and enjoy astrology.</string>
+    <string name="title_daily_horoscope">Daily Horoscope</string>
+    <string name="title_birth_chart">Birth Chart</string>
+    <string name="title_cosmic_match">Cosmic Match</string>
+    <string name="title_vedic_astrology">Vedic Astrology</string>
+    <string name="logout_button">Logout</string>
+
+
+</resources>

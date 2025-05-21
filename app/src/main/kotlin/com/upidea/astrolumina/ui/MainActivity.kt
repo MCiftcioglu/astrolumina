@@ -1,0 +1,37 @@
+package com.upidea.astrolumina.ui
+
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.upidea.astrolumina.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var bottomNav: BottomNavigationView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        bottomNav = findViewById(R.id.bottom_navigation)
+
+        loadFragment(HomeFragment())
+
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> loadFragment(HomeFragment())
+                R.id.nav_horoscope -> loadFragment(HoroscopeFragment())
+                R.id.nav_profile -> loadFragment(ProfileFragment())
+            }
+            true
+        }
+    }
+
+    private fun loadFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
+    }
+}

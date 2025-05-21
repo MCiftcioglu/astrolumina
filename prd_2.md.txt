@@ -1,0 +1,137 @@
+1. Giriş
+
+Bu belge, geliştirilen Astro Lumina adlı freemium astroloji mobil uygulamasının temel özelliklerini, mevcut ilerlemelerini ve yapılması gereken geliştirmeleri kapsamaktadır. Bu sürüm, Minimum Viable Product (MVP) sonrası geliştirilen ekranlar ve premium içeriklere dair entegrasyonları da içerir.
+
+2. Amaç
+
+Kullanıcılara kişiselleştirilmiş astroloji içerikleri sunmak, doğum haritası analizi yapmak, kullanıcılar arası etkileşimi teşvik etmek ve freemium modelle sürdürülebilir bir uygulama geliştirmektir.
+
+3. Hedef Kitle
+
+Astrolojiye ilgi duyan bireyler
+
+Günlük ve doğum haritası bazlı bilgiler isteyen kullanıcılar
+
+Uyumlu kişilerle bağlantı kurmak isteyen sosyal kullanıcılar
+
+Vedik astrolojiye özel ilgi duyan premium kullanıcılar
+
+4. Ürün Kapsamı (MVP + Gelişmeler)
+
+Üretiz Özellikler:
+
+Giriş ve Kayıt (SharedPreferences ile oturum yönetimi)
+
+Güneş burcuna göre Günlük Burç Yorumları
+
+Temel doğum bilgileri girerek Güneş burcu tespiti
+
+Kozmik Bağlantılar (Güneş burcuna göre filtrelenmiş kullanıcı listesi, demo mesajlaşma)
+
+Premium Özellikler:
+
+Güneş, Ay ve Yükselen burç hesaplama (AstroPy + Chaquopy)
+
+Gemini API ile kişiselleştirilmiş doğum haritası yorumu
+
+Vedik Astroloji yorumları (AstroUtils ile yerel hesaplama)
+
+Sadece premium kullanıcılara özel içerik kartları
+
+5. Fonksiyonel Gereksinimler
+
+5.1 Giriş/Kayıt Sistemi
+
+Email, şifre ve doğum bilgileri ile kayıt
+
+Girişte oturum kontrolü yapılması
+
+5.2 Ana Sayfa (HomeFragment)
+
+Kullanıcı adıyla karşılama
+
+4 adet kart: Günlük Burç, Doğum Haritası, Kozmik Bağlantılar, Vedik Astroloji
+
+Premium olmayan kullanıcılar PremiumActivity sayfasına yönlendirilir
+
+5.3 Günlük Burç (HoroscopeFragment)
+
+Spinner ile burç seçimi, yorum gösterimi
+
+SharedPreferences üzerinden varsayılan burç belirlenir
+
+5.4 Profil Ekranı
+
+Doğum tarihi, saati ve yeri girişi
+
+getSunSign() ile Güneş burcu tespiti
+
+5.5 Doğum Haritası (ChartFragment)
+
+AstroPy ile güneş, ay ve yükselen burç hesaplama
+
+Gemini API ile kişisel yorum alma
+
+Konum bilgisi Geocoder üzerinden elde edilir
+
+Sadece premium kullanıcılar erişebilir
+
+5.6 Kozmik Bağlantılar (MatchFragment + ChatActivity)
+
+Element uyumuna göre kullanıcı listeleme
+
+RecyclerView ile kullanıcı kartları
+
+ChatActivity ile demo mesajlaşma
+
+5.7 Vedik Astroloji (VedicHoroscopeActivity)
+
+AstroUtils sınıfı ile doğum bilgilerine göre yerel yorumlama
+
+5.8 Premium Sayfası (PremiumActivity)
+
+Avantajlar listesi
+
+Premium aktivasyonu
+
+6. Teknik Gereksinimler
+
+Platform: Android (Kotlin)
+
+Veri Saklama: SharedPreferences + SQLite
+
+Python Entegrasyonu: Chaquopy
+
+Yorum Motoru: Gemini API (Google Cloud)
+
+Arayüz: XML + Material Components
+
+7. Arayüz Tasarımı
+
+Koyu tema: #0D1B2A arka plan, beyaz ve mor tonları
+
+Modern burç ikonları, sade simgeler
+
+Kullanıcı dostu ve responsive yapıda ekranlar
+
+8. Yapılanlar ve Mevcut Durum
+
+✅ Kayıt ve Giriş Ekranı
+✅ Ana Sayfa (4 kartlı yapı)
+✅ Günlük Burç Yorumları
+✅ Profil Bilgi Güncelleme
+✅ Güneş burcu tespiti (Register ve Profile'da)
+✅ Doğum Haritası Hesaplama (Güneş-Ay-Yükselen + Gemini)
+✅ Kozmik Bağlantılar listeleme ve sohbet
+✅ Vedik Astroloji ekranı
+✅ Premium aktivasyonu ve sınırlama kontrolü
+
+9. Eksikler ve Yapılacaklar
+
+🔧 Kullanıcı profil fotoğrafı seçimi ve düzenleme
+🔧 Gerçek kullanıcı kayıt sistemi (şu an sadece SharedPreferences ile demo)
+🔧 Gemini API için hata yönetimi ve yükleniyor durumu
+🔧 Sohbet sisteminde gerçek zamanlı bildirim ve veri tabanı optimizasyonu
+🔧 Uygulama içi abonelik sistemi (Google Play Billing entegrasyonu)
+🔧 Daha fazla günlük/haftalık/aylık içerik yönetimi (CMS entegrasyonu opsiyonel)
+🔧 Push bildirim entegrasyonu (Firebase önerilir)

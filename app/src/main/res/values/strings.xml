@@ -10,7 +10,7 @@
     <string name="results_placeholder" translatable="false">(Results will appear here)</string>
 
     <!-- Home ekranı metinleri -->
-    <string name="welcome_text">Hoş geldin</string>
+    <string name="welcome_text" translatable="false">Hoş geldin</string>
     <string name="logout_button">Çıkış Yap</string>
     <string name="profile_photo">Profil Fotoğrafı</string>
     <string name="select_photo">Fotoğraf Seç</string>
@@ -26,16 +26,5 @@
     <string name="title_birth_chart">Doğum Haritası</string>
     <string name="title_cosmic_match">Kozmik Bağlantılar</string>
     <string name="title_vedic_astrology">Vedik Astroloji</string>
-    <string name="logout_button">Çıkış Yap</string>
-
-
-
-
-
-
-
-
-
-
 
 </resources>

@@ -1,6 +1,7 @@
 package com.upidea.astrolumina.ui
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.upidea.astrolumina.R
 import com.upidea.astrolumina.data.User
+import com.upidea.astrolumina.ui.ChatActivity
+import com.upidea.astrolumina.ui.UserListAdapter
 
 class MatchFragment : Fragment() {
 

@@ -25,7 +25,7 @@
 
         </activity>
         <activity android:name=".ui.ChatActivity" />
-        <activity android:name=".ui.PremiumActivity" />
+        <activity android:name=".ui.premium.PremiumActivity" />
         <activity android:name=".ui.horoscope.HoroscopeActivity" />
         <activity android:name=".ui.chart.ChartActivity" />
         <activity android:name=".ui.match.MatchActivity" />

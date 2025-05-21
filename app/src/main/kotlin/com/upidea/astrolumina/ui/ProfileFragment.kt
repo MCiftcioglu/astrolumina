@@ -6,13 +6,16 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
+import android.view.animation.AnimationUtils
 import android.widget.*
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.upidea.astrolumina.R
 import com.upidea.astrolumina.utils.getSunSign
 
 class ProfileFragment : Fragment() {
 
+    private lateinit var imageCard: CardView
     private lateinit var editName: EditText
     private lateinit var editBirthDate: EditText
     private lateinit var editBirthTime: EditText
@@ -31,6 +34,7 @@ class ProfileFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
         // View tanımlamaları
+        imageCard = view.findViewById(R.id.imageCard) // Added imageCard initialization
         editName = view.findViewById(R.id.editTextName)
         editBirthDate = view.findViewById(R.id.editTextBirthDate)
         editBirthTime = view.findViewById(R.id.editTextBirthTime)
@@ -85,6 +89,14 @@ class ProfileFragment : Fragment() {
         }
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Animasyonu yükle ve başlat
+        val neonAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.neon_animation)
+        imageCard.startAnimation(neonAnimation)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

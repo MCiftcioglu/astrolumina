@@ -21,7 +21,8 @@ class VedicHoroscopeActivity : AppCompatActivity() {
         val textResult = findViewById<TextView>(R.id.textVedicResult)
 
         if (birthDate != null && birthTime != null && birthPlace != null) {
-            val vedicInfo = AstroUtils.calculateVedicHoroscope(birthDate, birthTime, birthPlace)
+            val vedicInfo = AstroUtils.calculateVedicHoroscopeViaPython(this, birthDate, birthTime, birthPlace)
+
             textResult.text = vedicInfo
         } else {
             textResult.text = "Doğum bilgileri eksik. Lütfen profilinizden tamamlayın."

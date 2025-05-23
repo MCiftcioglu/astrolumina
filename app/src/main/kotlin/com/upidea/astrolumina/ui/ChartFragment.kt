@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.upidea.astrolumina.R
 import com.upidea.astrolumina.api.createAstrologyPrompt
 import com.upidea.astrolumina.api.GeminiService
-import com.upidea.astrolumina.ui.PremiumActivity
+import com.upidea.astrolumina.ui.premium.PremiumActivity
 import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
 import java.util.*

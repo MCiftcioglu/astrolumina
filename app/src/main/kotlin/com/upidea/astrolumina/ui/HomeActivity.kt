@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.astroapp.R
+import com.upidea.astrolumina.R
+import com.upidea.astrolumina.ui.LoginActivity
+
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

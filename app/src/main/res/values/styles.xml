@@ -10,7 +10,16 @@
         <item name="colorOnSecondary">#FFFFFF</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:windowBackground">#0D1B2A</item>
-        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:fontFamily">@font/parkinsans_regular</item>
+        <item name="fontFamily">@font/parkinsans_regular</item>
+    </style>
+
+    <!-- Örnek özel başlık stili -->
+    <style name="TitleTextStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/parkinsans_semibold</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
     <!-- Astro burç kartları için özel stil -->

@@ -2,75 +2,61 @@ package com.upidea.astrolumina.api
 
 import android.util.Log
 import com.upidea.astrolumina.BuildConfig
-import okhttp3.*
+import com.upidea.astrolumina.utils.GeminiHelper
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.Response
 import org.json.JSONObject
 import java.io.IOException
 
 object GeminiService {
-    private val client = OkHttpClient()
-    private const val ENDPOINT =
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
 
-    fun getAstrologyInterpretation(
-        prompt: String,
-        callback: (String?) -> Unit
-    ) {
+    private const val TAG = "GeminiService"
+    private const val BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
+    private val JSON = "application/json; charset=utf-8".toMediaType()
+
+    fun getAstrologyInterpretation(prompt: String, callback: (String?) -> Unit) {
         val apiKey = BuildConfig.GEMINI_API_KEY
-        if (apiKey.isEmpty()) {
-            callback("API anahtarı bulunamadı.")
-            return
-        }
 
-        val mediaType = "application/json; charset=utf-8".toMediaType()
-
-        val requestBody = """
-            {
-              "contents": [
-                {
-                  "parts": [
-                    { "text": "$prompt" }
-                  ]
-                }
-              ]
-            }
-        """.trimIndent().toRequestBody(mediaType)
+        val requestBody = JSONObject().apply {
+            put("contents", listOf(
+                mapOf("parts" to listOf(mapOf("text" to prompt)))
+            ))
+        }.toString().toRequestBody(JSON)
 
         val request = Request.Builder()
-            .url("$ENDPOINT?key=$apiKey")
+            .url("$BASE_URL?key=$apiKey")
             .post(requestBody)
             .build()
 
-        client.newCall(request).enqueue(object : Callback {
+        OkHttpClient().newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                Log.e("GeminiService", "İstek başarısız: ${e.message}")
+                Log.e(TAG, "API call failed", e)
                 callback(null)
             }
 
             override fun onResponse(call: Call, response: Response) {
-                val responseBody = response.body?.string()
-                if (response.isSuccessful && responseBody != null) {
-                    try {
-                        val json = JSONObject(responseBody)
-                        val content = json.getJSONArray("candidates")
-                            .getJSONObject(0)
-                            .getJSONObject("content")
-                            .getJSONArray("parts")
-                            .getJSONObject(0)
-                            .getString("text")
+                response.use {
+                    if (!it.isSuccessful) {
+                        Log.e(TAG, "Unexpected response: ${response.code}")
+                        callback(null)
+                    } else {
+                        val json = JSONObject(it.body?.string() ?: "")
+                        val candidates = json.optJSONArray("candidates")
+                        val content = candidates?.optJSONObject(0)
+                            ?.optJSONObject("content")
+                            ?.optJSONArray("parts")
+                            ?.optJSONObject(0)
+                            ?.optString("text")
+
                         callback(content)
-                    } catch (e: Exception) {
-                        Log.e("GeminiService", "Yanıt çözümleme hatası: ${e.message}")
-                        callback("Yorum çözümlenemedi.")
                     }
-                } else {
-                    Log.e("GeminiService", "API hatası: $responseBody")
-                    callback("Yorum alınamadı.")
                 }
             }
         })
     }
 }
-
-

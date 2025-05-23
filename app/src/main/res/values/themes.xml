@@ -1,7 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.AstroLumina" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Özel font buraya -->
-        <item name="android:fontFamily">@font/parkinsans</item>
-        <item name="fontFamily">@font/parkinsans</item>
+        <item name="android:fontFamily">@font/parkinsans_regular</item>
+        <item name="fontFamily">@font/parkinsans_regular</item>
+
     </style>
+
 </resources>
+
+
+

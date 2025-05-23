@@ -1,5 +1,9 @@
 package com.upidea.astrolumina.utils
 
+import android.content.Context
+import com.chaquo.python.Python
+import com.chaquo.python.android.AndroidPlatform
+
 fun getSunSign(day: Int, month: Int): String {
     return when (month) {
         1 -> if (day < 20) "Oğlak" else "Kova"
@@ -17,18 +21,47 @@ fun getSunSign(day: Int, month: Int): String {
         else -> "Bilinmiyor"
     }
 }
+
 object AstroUtils {
+
+    fun calculateVedicHoroscopeViaPython(context: Context, date: String, time: String, place: String, gender: String): String {
+        if (!Python.isStarted()) {
+            Python.start(AndroidPlatform(context))
+        }
+
+        return try {
+            val py = Python.getInstance()
+            val module = py.getModule("vedic_utils")  // Python dosyasının adı
+            val result = module.callAttr("calculate_vedic_horoscope", date, time, place, gender)
+            result.toString()
+        } catch (e: Exception) {
+            "Hesaplama sırasında hata oluştu: ${e.localizedMessage}"
+        }
+    }
 
     private val vedicSigns = listOf(
         "Koç", "Boğa", "İkizler", "Yengeç", "Aslan", "Başak",
         "Terazi", "Akrep", "Yay", "Oğlak", "Kova", "Balık"
     )
 
-    private const val LAHIRI_AYANAMSA = 23.856  // Derece cinsinden yaklaşık değer
+    private const val LAHIRI_AYANAMSA = 23.856
 
     fun getSiderealZodiacSign(eclipticLongitude: Double): String {
         val correctedLongitude = (eclipticLongitude - LAHIRI_AYANAMSA + 360) % 360
         val signIndex = (correctedLongitude / 30).toInt()
         return vedicSigns[signIndex]
+    }
+
+    fun calculateVedicHoroscope(birthDate: String, birthTime: String, birthPlace: String, gender: String): String {
+        return """
+            📍 Doğum Yeri: $birthPlace
+            📅 Tarih: $birthDate
+            ⏰ Saat: $birthTime
+            👤 Cinsiyet: $gender
+
+            🪐 Vedik Astroloji Yorumu:
+            Vedik haritan sana sabırlı olman gereken bir dönemde olduğunu söylüyor.
+            Duygularını bastırmak yerine anlamaya çalış, sezgilerini takip et.
+        """.trimIndent()
     }
 }

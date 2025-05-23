@@ -3,10 +3,13 @@ package com.upidea.astrolumina.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.astroapp.R
+import com.upidea.astrolumina.R
+import com.upidea.astrolumina.ui.auth.LoginActivity
+import com.upidea.astrolumina.ui.HomeFragment
+
+
+
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,19 +28,12 @@ class HomeActivity : AppCompatActivity() {
             return
         }
 
+        // activity_home.xml dosyasını yükle
         setContentView(R.layout.activity_home)
 
-        val welcomeText = findViewById<TextView>(R.id.textWelcome)
-        val logoutButton = findViewById<Button>(R.id.buttonLogout)
-
-        welcomeText.text = "Hoş geldin, $email"
-
-        logoutButton.setOnClickListener {
-            // Oturumu kapat
-            sharedPref.edit().clear().apply()
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+        // HomeFragment'i başlat
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, HomeFragment())
+            .commit()
     }
 }

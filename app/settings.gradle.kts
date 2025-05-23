@@ -3,7 +3,6 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
-        maven { url = uri("https://chaquo.com/maven") } // Chaquopy için şart
     }
 }
 
@@ -15,4 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
+rootProject.name = "AstroLumina"
 include(":app")

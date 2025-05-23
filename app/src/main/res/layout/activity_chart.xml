@@ -5,8 +5,9 @@
     android:padding="24dp">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="274dp"
+        android:layout_height="36dp"
+        android:fontFamily="@font/parkinsans_regular"
         android:text="Doğum Haritası Ekranı"
         android:textSize="18sp" />
 </LinearLayout>

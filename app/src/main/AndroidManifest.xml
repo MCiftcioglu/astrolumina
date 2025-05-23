@@ -12,26 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AstroLumina"
         tools:targetApi="31">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.auth.LoginActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.AstroLumina">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+
         <activity android:name=".ui.ChatActivity" />
         <activity android:name=".ui.premium.PremiumActivity" />
         <activity android:name=".ui.horoscope.HoroscopeActivity" />
         <activity android:name=".ui.chart.ChartActivity" />
         <activity android:name=".ui.match.MatchActivity" />
-
-
-
     </application>
+
 
 </manifest>

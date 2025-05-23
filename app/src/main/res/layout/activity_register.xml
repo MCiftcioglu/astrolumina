@@ -93,6 +93,37 @@
             android:padding="12dp"
             android:layout_marginBottom="24dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cinsiyetiniz:"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
+
+            <RadioButton
+                android:id="@+id/radioMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Erkek"
+                android:textColor="#FFFFFF" />
+
+            <RadioButton
+                android:id="@+id/radioFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kadın"
+                android:textColor="#FFFFFF"
+                android:layout_marginStart="24dp" />
+        </RadioGroup>
+
+
 
         <Button
             android:id="@+id/buttonRegister"

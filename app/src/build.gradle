@@ -4,6 +4,8 @@ plugins {
     id("kotlin-kapt")
 
 }
+ext.kotlin_version = '1.9.0'
+
 apply plugin: 'com.chaquo.python'
 android {
     namespace = "com.upidea.astrolumina"

@@ -1,12 +1,10 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
         google()
         mavenCentral()
-        maven { url = uri("https://chaquo.com/maven") }
+        gradlePluginPortal()
     }
 }
-
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -14,6 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-
-// ❗❗❗ Burası eksiktiyse XML dosyalar da hata verir
+rootProject.name = "AstroLumina"
 include(":app")

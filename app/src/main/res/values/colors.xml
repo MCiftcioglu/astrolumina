@@ -10,7 +10,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- Color.kt'den gelen renkler -->
-    <color name="purple_80">#FFD0BCFF</color>
+    <color name="purple_80">#6247ea</color>
     <color name="purple_grey_80">#FFCCC2DC</color>
     <color name="pink_80">#FFEFB8C8</color>
 

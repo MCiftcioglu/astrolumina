@@ -7,10 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.upidea.astrolumina.R
+import com.upidea.astrolumina.data.local.entity.UserEntity
 
 class UserListAdapter(
-    private val userList: List<User>,
-    private val onItemClick: ((User) -> Unit)? = null
+    private val userList: List<UserEntity>,
+    private val onItemClick: ((UserEntity) -> Unit)? = null
 ) : RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
 
     inner class UserViewHolder(view: View) : RecyclerView.ViewHolder(view) {

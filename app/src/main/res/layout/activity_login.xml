@@ -31,7 +31,7 @@
         android:backgroundTint="#FFFFFF"
         android:textColor="#FFFFFF"
         android:textColorHint="#CCCCCC"
-        android:drawableLeft="@drawable/ic_email"
+        android:drawableStart="@drawable/ic_email"
         android:padding="12dp"
         android:layout_marginBottom="16dp" />
 
@@ -52,20 +52,21 @@
         android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Giriş Yap"
+        android:layout_marginBottom="12dp"
         android:backgroundTint="#1B263B"
-        android:textColor="#FFFFFF"
+        android:text="Giriş Yap"
         android:textAllCaps="false"
-        android:layout_marginBottom="12dp" />
+        android:textColor="#FFFFFF" />
 
-    <TextView
-        android:id="@+id/textRegisterLink"
+    <Button
+        android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:text="Hesabın yok mu? Kayıt ol"
-        android:textColor="#89CFF0"
-        android:textSize="14sp" />
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="#2E3A56"
+        android:text="Kayıt Ol"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF" />
+
 
 </LinearLayout>

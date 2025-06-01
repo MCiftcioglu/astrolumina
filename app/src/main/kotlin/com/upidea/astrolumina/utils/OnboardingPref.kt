@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 class OnboardingPref(context: Context) {
 
     private val prefs: SharedPreferences =
-        context.getSharedPreferences("onboarding_prefs", Context.MODE_PRIVATE)
+        context.getSharedPreferences("AstroPrefs", Context.MODE_PRIVATE) // ✅ Adı düzeltildi
 
     fun setOnboardingSeen() {
         prefs.edit().putBoolean("seen", true).apply()
@@ -16,3 +16,4 @@ class OnboardingPref(context: Context) {
         return prefs.getBoolean("seen", false)
     }
 }
+

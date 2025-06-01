@@ -3,72 +3,80 @@ package com.upidea.astrolumina.ui
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ListView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.upidea.astrolumina.R
-import com.upidea.astrolumina.data.local.entity.Message
 import com.upidea.astrolumina.data.local.AppDatabase
+import com.upidea.astrolumina.data.local.entity.Message
 import kotlinx.coroutines.launch
 
 class ChatActivity : AppCompatActivity() {
 
-    private lateinit var messageListView: ListView
+    private lateinit var recyclerView: RecyclerView
     private lateinit var messageInput: EditText
     private lateinit var sendButton: Button
     private lateinit var chatAdapter: ChatAdapter
-    private val messageList = mutableListOf<String>()
+
+    private val messageList = mutableListOf<Message>()
+    private lateinit var currentUser: String
+    private lateinit var userName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
-        val userName = intent.getStringExtra("userName") ?: "Kullanıcı"
-        val currentUser = "Ben" // Giriş yapan kullanıcı ismi gelecekte dinamik olabilir
-
-        findViewById<TextView>(R.id.textUserName).text = userName
-
-        messageListView = findViewById(R.id.messageListView)
+        recyclerView = findViewById(R.id.messageRecyclerView)
         messageInput = findViewById(R.id.editTextMessage)
         sendButton = findViewById(R.id.buttonSend)
 
-        chatAdapter = ChatAdapter(this, messageList)
-        messageListView.adapter = chatAdapter
+        currentUser = "Ben"
+        userName = intent.getStringExtra("userName") ?: "Kullanıcı"
 
-        val db = AppDatabase.getDatabase(this)
-        val dao = db.messageDao()
+        chatAdapter = ChatAdapter(currentUser, messageList)
+        recyclerView.adapter = chatAdapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Önceki mesajları yükle
+        val dao = AppDatabase.getDatabase(this).messageDao()
+
         lifecycleScope.launch {
             val messages = dao.getChatMessages(currentUser, userName)
             messageList.clear()
-            messageList.addAll(messages.map { "${it.sender}: ${it.content}" })
+            messageList.addAll(messages)
             chatAdapter.notifyDataSetChanged()
-            messageListView.smoothScrollToPosition(messageList.size - 1)
+            recyclerView.scrollToPosition(messageList.size - 1)
         }
 
         sendButton.setOnClickListener {
             val content = messageInput.text.toString().trim()
             if (content.isNotEmpty()) {
-                val message = Message(sender = currentUser, receiver = userName, content = content)
+                val message = Message(
+                    sender = currentUser,
+                    receiver = userName,
+                    content = content,
+                    timestamp = System.currentTimeMillis()
+                )
 
                 lifecycleScope.launch {
                     dao.insertMessage(message)
-
-                    messageList.add("${message.sender}: ${message.content}")
-                    chatAdapter.notifyDataSetChanged()
+                    messageList.add(message)
+                    chatAdapter.notifyItemInserted(messageList.size - 1)
+                    recyclerView.scrollToPosition(messageList.size - 1)
                     messageInput.setText("")
-                    messageListView.smoothScrollToPosition(messageList.size - 1)
 
-                    // Karşıdan sahte bir yanıt ekleyelim (demo amaçlı)
-                    val reply = Message(sender = userName, receiver = currentUser, content = "Harika, devam edelim!")
+                    // Demo yanıt
+                    val reply = Message(
+                        sender = userName,
+                        receiver = currentUser,
+                        content = "Harika, devam edelim!",
+                        timestamp = System.currentTimeMillis()
+                    )
                     dao.insertMessage(reply)
-
-                    messageList.add("${reply.sender}: ${reply.content}")
-                    chatAdapter.notifyDataSetChanged()
-                    messageListView.smoothScrollToPosition(messageList.size - 1)
+                    messageList.add(reply)
+                    chatAdapter.notifyItemInserted(messageList.size - 1)
+                    recyclerView.scrollToPosition(messageList.size - 1)
                 }
             } else {
                 Toast.makeText(this, "Lütfen mesaj yazın", Toast.LENGTH_SHORT).show()

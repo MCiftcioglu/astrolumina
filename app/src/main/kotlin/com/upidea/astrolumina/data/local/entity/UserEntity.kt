@@ -10,6 +10,9 @@ data class UserEntity(
     val email: String,
     val password: String,
     val birthDate: String,
-    val birthTime: String,
-    val birthPlace: String
+    val birthTime: String? = null,
+    val birthPlace: String? = null,
+    val gender: String,
+    val sunSign: String = "Koç",       // EKLENDİ
+    val isOnline: Boolean = false      // EKLENDİ
 )

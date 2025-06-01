@@ -6,7 +6,8 @@ import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.upidea.astrolumina.R
-import com.upidea.astrolumina.ui.auth.viewmodel.RegisterViewModel
+import com.upidea.astrolumina.data.local.entity.UserEntity // Added import
+import com.upidea.astrolumina.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,13 +39,16 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             if (email.isNotEmpty() && password.length >= 6 && name.isNotEmpty() && gender.isNotEmpty()) {
-                registerViewModel.registerUser(
+                val userToRegister = UserEntity(
+                    name = name,
                     email = email,
                     password = password,
-                    name = name,
                     birthDate = birthDate,
+                    birthTime = null,
+                    birthPlace = null,
                     gender = gender
                 )
+                registerViewModel.registerUser(userToRegister)
 
                 Toast.makeText(this, "Kayıt başarılı!", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, LoginActivity::class.java))

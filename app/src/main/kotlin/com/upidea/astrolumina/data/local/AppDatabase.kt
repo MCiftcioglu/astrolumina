@@ -5,12 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.upidea.astrolumina.data.local.dao.UserDao
-import com.upidea.astrolumina.data.entity.UserEntity
+import com.upidea.astrolumina.data.local.dao.MessageDao
+import com.upidea.astrolumina.data.local.entity.UserEntity
+import com.upidea.astrolumina.data.local.entity.Message
 
-
-@Database(entities = [UserEntity::class], version = 1, exportSchema = false)
+@Database(entities = [UserEntity::class, Message::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
+    abstract fun messageDao(): MessageDao
 
     companion object {
         @Volatile private var INSTANCE: AppDatabase? = null

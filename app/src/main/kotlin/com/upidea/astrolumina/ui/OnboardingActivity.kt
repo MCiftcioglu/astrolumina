@@ -1,4 +1,4 @@
-package com.upidea.astrolumina.ui.onboarding
+package com.upidea.astrolumina.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 import com.upidea.astrolumina.databinding.ActivityOnboardingBinding
-import com.upidea.astrolumina.ui.home.HomeActivity
-import com.upidea.astrolumina.ui.onboarding.OnboardingItem
+import com.upidea.astrolumina.model.OnboardingItem
+import com.upidea.astrolumina.ui.auth.LoginActivity
+import com.upidea.astrolumina.utils.OnboardingPref
+import com.upidea.astrolumina.R
+import com.upidea.astrolumina.adapters.OnboardingPagerAdapter
+
+
 
 class OnboardingActivity : AppCompatActivity() {
 
@@ -16,19 +21,22 @@ class OnboardingActivity : AppCompatActivity() {
 
     private val onboardingItems = listOf(
         OnboardingItem(
-            imageResId = R.drawable.astrolumia_logo,
-            title = "AstroLumia’ya Hoş Geldiniz",
-            description = "Doğum haritanızla kozmik potansiyelinizi keşfedin."
+            R.drawable.ic_birthmap2,
+            "AstroLumia’ya Hoş Geldiniz",
+            "Kozmik bağlantılarla kendinizi keşfedin.",
+            R.drawable.bg_chart
         ),
         OnboardingItem(
-            imageResId = R.drawable.astrolumia_logo,
-            title = "Kozmik Bağlantılar",
-            description = "Doğum bilgilerinizi girerek ruh eşinizi bulun."
+            R.drawable.ic_vedic2,
+            "Vedik Astroloji Yorumları",
+            "Ay burcunuza göre özelleştirilmiş analizler.",
+            R.drawable.bg_chart
         ),
         OnboardingItem(
-            imageResId = R.drawable.astrolumia_logo,
-            title = "Vedik Astroloji",
-            description = "Premium kullanıcılar için gelişmiş Vedik analizler."
+            R.drawable.ic_match2,
+            "Kozmik Uyumu Keşfedin",
+            "Burç uyumlarına göre arkadaşlarınızı bulun.",
+            R.drawable.bg_chart
         )
     )
 
@@ -38,28 +46,27 @@ class OnboardingActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         adapter = OnboardingPagerAdapter(onboardingItems)
-        binding.viewPager.adapter = adapter
+        binding.viewPagerOnboarding.adapter = adapter
 
         // dots indicator bağlama
         val dotsIndicator = findViewById<WormDotsIndicator>(R.id.dotsIndicator)
-        dotsIndicator.attachTo(binding.viewPager)
+        dotsIndicator.attachTo(binding.viewPagerOnboarding)
 
         // ileri butonu
-        binding.btnNext.setOnClickListener {
-            if (binding.viewPager.currentItem < onboardingItems.lastIndex) {
-                binding.viewPager.currentItem += 1
+        binding.buttonNext.setOnClickListener {
+            if (binding.viewPagerOnboarding.currentItem < onboardingItems.lastIndex) {
+                binding.viewPagerOnboarding.currentItem += 1
             } else {
                 OnboardingPref(this).setOnboardingSeen()
-                startActivity(Intent(this, LoginActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java)) // ← yönlendirme eklendi
                 finish()
             }
         }
 
-
         // ViewPager sayfa değişimiyle buton metnini güncelle
-        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.viewPagerOnboarding.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                binding.btnNext.text =
+                binding.buttonNext.text =
                     if (position == onboardingItems.lastIndex) "Başla" else "İleri"
             }
         })

@@ -7,7 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.upidea.astrolumina.R
-import com.upidea.astrolumina.data.User
 
 class UserListAdapter(
     private val userList: List<User>,

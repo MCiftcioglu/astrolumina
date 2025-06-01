@@ -1,0 +1,23 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://chaquo.com/maven" } // ✅ Gereken kaynak
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.2.2'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22'
+        classpath 'com.chaquo.python:gradle:14.0.2' // ✅ App modülü ile aynı versiyon
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.48' // ✅ Hilt için eklendi
+    }
+}
+
+//allprojects {
+  //  repositories {
+    //    google()
+      //  mavenCentral()
+        //maven { url "https://chaquo.com/maven" } // ✅ Gereken kaynak
+    //}
+//}
+
+

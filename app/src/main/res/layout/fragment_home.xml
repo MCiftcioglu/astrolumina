@@ -68,7 +68,7 @@
                         android:layout_height="match_parent"
                         android:contentDescription="Günlük Burç"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_zodiac"
+                        android:src="@drawable/aries_icon"
                         android:id="@+id/imageDaily"/>
 
                     <TextView
@@ -103,7 +103,7 @@
                         android:layout_height="match_parent"
                         android:contentDescription="Doğum Haritası"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_chart" />
+                        android:src="@drawable/ic_birthmap" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -193,7 +193,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:backgroundTint="#8c52ff"
+            android:backgroundTint="#607afb"
             android:text="ÇIKIŞ YAP"
             android:textColor="@android:color/white" />
 

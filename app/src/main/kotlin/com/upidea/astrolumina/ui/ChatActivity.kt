@@ -9,8 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.upidea.astrolumina.R
-import com.upidea.astrolumina.data.AppDatabase
-import com.upidea.astrolumina.data.Message
+import com.upidea.astrolumina.data.local.entity.Message
+import com.upidea.astrolumina.data.local.AppDatabase
 import kotlinx.coroutines.launch
 
 class ChatActivity : AppCompatActivity() {

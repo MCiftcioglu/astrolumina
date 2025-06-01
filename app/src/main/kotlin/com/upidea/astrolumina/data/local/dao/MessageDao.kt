@@ -1,6 +1,7 @@
-package com.upidea.astrolumina.data
+package com.upidea.astrolumina.data.local.dao
 
 import androidx.room.*
+import com.upidea.astrolumina.data.local.entity.Message
 
 @Dao
 interface MessageDao {

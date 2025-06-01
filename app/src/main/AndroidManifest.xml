@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.upidea.astrolumina">
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,7 +15,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".ui.auth.LoginActivity"
+            android:name=".ui.LoginActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.AstroLumina">
@@ -29,7 +30,6 @@
         <activity android:name=".ui.horoscope.HoroscopeActivity" />
         <activity android:name=".ui.chart.ChartActivity" />
         <activity android:name=".ui.match.MatchActivity" />
+
     </application>
-
-
 </manifest>

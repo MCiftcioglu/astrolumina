@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.upidea.astrolumina.R
-import com.upidea.astrolumina.data.User
 import com.upidea.astrolumina.ui.ChatActivity
 import com.upidea.astrolumina.ui.UserListAdapter
 

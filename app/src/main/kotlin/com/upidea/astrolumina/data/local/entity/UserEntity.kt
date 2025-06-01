@@ -10,6 +10,7 @@ data class UserEntity(
     val email: String,
     val password: String,
     val birthDate: String,
-    val birthTime: String,
-    val birthPlace: String
+    val birthTime: String? = null, // Made nullable with default
+    val birthPlace: String? = null, // Made nullable with default
+    val gender: String // Added gender
 )

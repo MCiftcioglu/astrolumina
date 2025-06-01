@@ -1,6 +1,6 @@
 package com.upidea.astrolumina.data.repository
 
-import com.upidea.astrolumina.data.entity.UserEntity
+import com.upidea.astrolumina.data.local.entity.UserEntity
 import com.upidea.astrolumina.data.local.dao.UserDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

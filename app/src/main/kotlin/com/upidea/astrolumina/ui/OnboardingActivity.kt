@@ -22,20 +22,20 @@ class OnboardingActivity : AppCompatActivity() {
     private val onboardingItems = listOf(
         OnboardingItem(
             R.drawable.ic_birthmap2,
-            "AstroLumia’ya Hoş Geldiniz",
+            "Doğum Haritanızı Çıkartın",
             "Kozmik bağlantılarla kendinizi keşfedin.",
             R.drawable.bg_chart
         ),
         OnboardingItem(
             R.drawable.ic_vedic2,
-            "Vedik Astroloji Yorumları",
-            "Ay burcunuza göre özelleştirilmiş analizler.",
+            "Ay Burcunuzu Öğrenin",
+            "Ay burcunuza göre öngörüler elde edin.",
             R.drawable.bg_chart
         ),
         OnboardingItem(
             R.drawable.ic_match2,
             "Kozmik Uyumu Keşfedin",
-            "Burç uyumlarına göre arkadaşlarınızı bulun.",
+            "Derin bağ kurabileceğiniz insanlarla tanışın.",
             R.drawable.bg_chart
         )
     )

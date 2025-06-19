@@ -22,6 +22,8 @@ class PremiumActivity : AppCompatActivity() {
             Premium ile şunlara erişebilirsiniz:
             • Güneş, Ay ve Yükselen burç analizi
             • Doğum haritası özellikleri
+            • Burcunuza uygun insanlarla tanışma fırsatı
+            • Mesajlaşırken canlı çeviri özelliği
             • Gelecekte daha fazla özel içerik
         """.trimIndent()
 

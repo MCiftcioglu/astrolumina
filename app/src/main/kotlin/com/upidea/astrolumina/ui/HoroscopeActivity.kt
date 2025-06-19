@@ -1,12 +1,18 @@
 package com.upidea.astrolumina.ui.horoscope
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.upidea.astrolumina.R
 import com.upidea.astrolumina.api.GeminiService
 import com.upidea.astrolumina.utils.GeminiHelper
+import com.upidea.astrolumina.ui.ProfileActivity
+import com.upidea.astrolumina.ui.HomeActivity
+import com.upidea.astrolumina.ui.ChatActivity
+import com.upidea.astrolumina.ui.chart.ChartActivity
 
 class HoroscopeActivity : AppCompatActivity() {
 
@@ -26,6 +32,29 @@ class HoroscopeActivity : AppCompatActivity() {
         spinnerRising = findViewById(R.id.spinnerRising)
         textViewResult = findViewById(R.id.textViewResult)
         buttonGenerate = findViewById(R.id.buttonGenerate)
+        bottomNavigation = findViewById(R.id.bottomNavigation)
+
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_profile -> {
+                    startActivity(Intent(this, ProfileActivity::class.java))
+                    true
+                }
+                R.id.navigation_home -> {
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    true
+                }
+                R.id.navigation_messages -> {
+                    startActivity(Intent(this, ChatActivity::class.java))
+                    true
+                }
+                R.id.navigation_chart -> {
+                    startActivity(Intent(this, ChartActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
 
         // Tıklama ile yorum oluştur
         buttonGenerate.setOnClickListener {

@@ -63,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:backgroundTint="#2E3A56"
+        android:backgroundTint="#7965C1"
         android:text="Kayıt Ol"
         android:textAllCaps="false"
         android:textColor="#FFFFFF" />

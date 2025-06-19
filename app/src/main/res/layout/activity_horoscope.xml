@@ -5,29 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Üst toolbar -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:title="Günlük Burç Yorumu"
-        android:titleTextColor="@android:color/white"
-        app:navigationIcon="@android:drawable/ic_menu_revert"
-        app:titleCentered="true" />
+
 
     <!-- İçerik bloğu -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
+
         android:padding="16dp">
 
         <!-- Güneş Burcu Seçimi -->
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="139dp"
+            android:layout_height="30dp"
             android:text="Güneş Burcunuz:" />
 
         <Spinner
@@ -71,11 +62,18 @@
         <TextView
             android:id="@+id/textViewResult"
             android:layout_width="match_parent"
-            android:layout_height="330dp"
+            android:layout_height="159dp"
             android:layout_marginTop="24dp"
             android:layout_weight="1"
             android:text="Yorum burada görünecek..."
             android:textColor="@android:color/black"
             android:textSize="16sp" />
     </LinearLayout>
+
+    <include
+        android:id="@+id/bottomNav"
+        layout="@layout/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

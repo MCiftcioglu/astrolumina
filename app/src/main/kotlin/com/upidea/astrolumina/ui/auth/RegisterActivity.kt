@@ -44,11 +44,12 @@ class RegisterActivity : AppCompatActivity() {
                 ""
             }
 
-            if (email.isNotEmpty() && password.length >= 6 && name.isNotEmpty() && gender.isNotEmpty()) {
-                if (email.isNotEmpty() && password.length >= 6 && name.isNotEmpty() &&
-                    gender.isNotEmpty() && birthDate.isNotEmpty() && birthTime.isNotEmpty() && birthPlace.isNotEmpty()) {
+            if (email.isNotEmpty() && password.length >= 6 && name.isNotEmpty() &&
+                gender.isNotEmpty() && birthDate.isNotEmpty() && birthTime.isNotEmpty() && birthPlace.isNotEmpty()
+            ) {
 
-                    val (sun, moon, rising) = AstroUtils.calculateSignsViaPython(this, birthDate, birthTime, birthPlace)
+                val (sun, moon, rising) = AstroUtils.calculateSignsViaPython(this, birthDate, birthTime, birthPlace)
+
                 val userToRegister = UserEntity(
                     name = name,
                     email = email,
@@ -61,18 +62,18 @@ class RegisterActivity : AppCompatActivity() {
                 )
                 registerViewModel.registerUser(userToRegister)
 
-                    val prefs = getSharedPreferences("AstroPrefs", Context.MODE_PRIVATE)
-                    prefs.edit().apply {
-                        putString("name", name)
-                        putString("birthDate", birthDate)
-                        putString("birthTime", birthTime)
-                        putString("birthPlace", birthPlace)
-                        putString("gender", gender)
-                        putString("sunSign", sun)
-                        putString("moonSign", moon)
-                        putString("risingSign", rising)
-                        apply()
-                    }
+                val prefs = getSharedPreferences("AstroPrefs", Context.MODE_PRIVATE)
+                prefs.edit().apply {
+                    putString("name", name)
+                    putString("birthDate", birthDate)
+                    putString("birthTime", birthTime)
+                    putString("birthPlace", birthPlace)
+                    putString("gender", gender)
+                    putString("sunSign", sun)
+                    putString("moonSign", moon)
+                    putString("risingSign", rising)
+                    apply()
+                }
 
                 Toast.makeText(this, "Kayıt başarılı!", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, LoginActivity::class.java))
@@ -82,4 +83,4 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
     }
-    }
+}

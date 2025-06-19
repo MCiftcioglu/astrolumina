@@ -70,7 +70,6 @@ object AstroUtils {
         }
     }
 
-
     private val vedicSigns = listOf(
         "Koç", "Boğa", "İkizler", "Yengeç", "Aslan", "Başak",
         "Terazi", "Akrep", "Yay", "Oğlak", "Kova", "Balık"

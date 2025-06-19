@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_home"
+    android:padding="16dp">
 
 
 
@@ -19,39 +20,43 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
             android:text="Güneş Burcunuz:" />
 
         <TextView
             android:id="@+id/textSun"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
         <!-- Ay Burcu  -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
             android:text="Ay Burcunuz:" />
 
         <TextView
             android:id="@+id/textMoon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
         <!-- Yükselen Burç  -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
             android:text="Yükselen Burcunuz:" />
 
         <TextView
             android:id="@+id/textRising"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/white" />
 
         <!-- Buton -->
         <Button
@@ -69,7 +74,7 @@
             android:layout_marginTop="24dp"
             android:layout_weight="1"
             android:text="Yorum burada görünecek..."
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="16sp" />
 
         <include
@@ -81,4 +86,4 @@
     </LinearLayout>
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

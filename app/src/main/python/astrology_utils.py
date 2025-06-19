@@ -46,15 +46,7 @@ def calculate_signs(date_str, time_str, latitude, longitude):
         asc_degree = lst
         asc_sign = zodiac_sign(asc_degree)
 
-        return {
-            "sun": sun_sign,
-            "moon": moon_sign,
-            "ascendant": asc_sign
-        }
+        return f"{sun_sign},{moon_sign},{asc_sign}"
 
     except Exception as e:
-        return {
-            "sun": "Bilinmiyor",
-            "moon": "Bilinmiyor",
-            "ascendant": "Bilinmiyor"
-        }
+        return "Bilinmiyor,Bilinmiyor,Bilinmiyor"

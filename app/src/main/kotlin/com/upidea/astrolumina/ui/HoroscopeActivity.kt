@@ -18,9 +18,9 @@ import android.view.MenuItem
 
 class HoroscopeActivity : AppCompatActivity() {
 
-    private lateinit var spinnerSun: Spinner
-    private lateinit var spinnerMoon: Spinner
-    private lateinit var spinnerRising: Spinner
+    private lateinit var textSun: TextView
+    private lateinit var textMoon: TextView
+    private lateinit var textRising: TextView
     private lateinit var textViewResult: TextView
     private lateinit var buttonGenerate: Button
     private lateinit var bottomNavigation: BottomNavigationView
@@ -31,12 +31,17 @@ class HoroscopeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_horoscope)
 
         // View'ları bağla
-        spinnerSun = findViewById(R.id.spinnerSun)
-        spinnerMoon = findViewById(R.id.spinnerMoon)
-        spinnerRising = findViewById(R.id.spinnerRising)
+        textSun = findViewById(R.id.textSun)
+        textMoon = findViewById(R.id.textMoon)
+        textRising = findViewById(R.id.textRising)
         textViewResult = findViewById(R.id.textViewResult)
         buttonGenerate = findViewById(R.id.buttonGenerate)
         bottomNavigation = findViewById(R.id.bottomNavigation)
+
+        val sharedPref = getSharedPreferences("AstroPrefs", Context.MODE_PRIVATE)
+        textSun.text = sharedPref.getString("sunSign", "")
+        textMoon.text = sharedPref.getString("moonSign", "")
+        textRising.text = sharedPref.getString("risingSign", "")
 
         bottomNavigation.setOnItemSelectedListener { item: MenuItem ->
             when (item.itemId) {
@@ -62,13 +67,13 @@ class HoroscopeActivity : AppCompatActivity() {
 
         // Tıklama ile yorum oluştur
         buttonGenerate.setOnClickListener {
-            val sun = spinnerSun.selectedItem.toString()
-            val moon = spinnerMoon.selectedItem.toString()
-            val rising = spinnerRising.selectedItem.toString()
+            val prefs = getSharedPreferences("AstroPrefs", Context.MODE_PRIVATE)
+            val sun = prefs.getString("sunSign", "") ?: ""
+            val moon = prefs.getString("moonSign", "") ?: ""
+            val rising = prefs.getString("risingSign", "") ?: ""
 
             // Kullanıcının kayıtlı cinsiyetini al
-            val sharedPref = getSharedPreferences("AstroPrefs", Context.MODE_PRIVATE)
-            val gender = sharedPref.getString("gender", "") ?: ""
+            val gender = prefs.getString("gender", "") ?: ""
 
             // AI için prompt oluştur
             val prompt = GeminiHelper.createAstrologyPrompt(sun, moon, rising, gender)

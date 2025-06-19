@@ -1,6 +1,8 @@
 package com.upidea.astrolumina.utils
 
 import android.content.Context
+import android.location.Geocoder
+import java.util.Locale
 import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
 
@@ -38,6 +40,36 @@ object AstroUtils {
             "Hesaplama sırasında hata oluştu: ${e.localizedMessage}"
         }
     }
+
+    fun calculateSignsViaPython(context: Context, date: String, time: String, place: String): Triple<String, String, String> {
+        // Konumu geocode ile koordinata çevir
+        val geocoder = Geocoder(context, Locale.getDefault())
+        val address = try {
+            geocoder.getFromLocationName(place, 1)?.firstOrNull()
+        } catch (e: Exception) {
+            null
+        }
+        val lat = address?.latitude ?: 0.0
+        val lon = address?.longitude ?: 0.0
+
+        if (!Python.isStarted()) {
+            Python.start(AndroidPlatform(context))
+        }
+
+        return try {
+            val py = Python.getInstance()
+            val module = py.getModule("astrology_utils")
+            val result = module.callAttr("calculate_signs", date, time, lat, lon).toString()
+            val parts = result.split(",")
+            val sun = parts.getOrNull(0) ?: "Bilinmiyor"
+            val moon = parts.getOrNull(1) ?: "Bilinmiyor"
+            val asc = parts.getOrNull(2) ?: "Bilinmiyor"
+            Triple(sun, moon, asc)
+        } catch (e: Exception) {
+            Triple("Bilinmiyor", "Bilinmiyor", "Bilinmiyor")
+        }
+    }
+
 
     private val vedicSigns = listOf(
         "Koç", "Boğa", "İkizler", "Yengeç", "Aslan", "Başak",

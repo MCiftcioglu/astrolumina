@@ -13,6 +13,8 @@ import com.upidea.astrolumina.ui.ProfileActivity
 import com.upidea.astrolumina.ui.HomeActivity
 import com.upidea.astrolumina.ui.ChatActivity
 import com.upidea.astrolumina.ui.chart.ChartActivity
+import android.view.MenuItem
+
 
 class HoroscopeActivity : AppCompatActivity() {
 
@@ -21,6 +23,8 @@ class HoroscopeActivity : AppCompatActivity() {
     private lateinit var spinnerRising: Spinner
     private lateinit var textViewResult: TextView
     private lateinit var buttonGenerate: Button
+    private lateinit var bottomNavigation: BottomNavigationView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +38,7 @@ class HoroscopeActivity : AppCompatActivity() {
         buttonGenerate = findViewById(R.id.buttonGenerate)
         bottomNavigation = findViewById(R.id.bottomNavigation)
 
-        bottomNavigation.setOnItemSelectedListener { item ->
+        bottomNavigation.setOnItemSelectedListener { item: MenuItem ->
             when (item.itemId) {
                 R.id.navigation_profile -> {
                     startActivity(Intent(this, ProfileActivity::class.java))

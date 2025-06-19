@@ -12,12 +12,13 @@ buildscript {
     }
 }
 
-//allprojects {
-  //  repositories {
-    //    google()
-      //  mavenCentral()
-        //maven { url "https://chaquo.com/maven" } // ✅ Gereken kaynak
-    //}
-//}
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://chaquo.com/maven" } // ← Gerekirse burada da olabilir
+    }
+}
+
 
 

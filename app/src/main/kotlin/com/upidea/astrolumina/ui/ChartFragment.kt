@@ -36,12 +36,23 @@ class ChartFragment : Fragment() {
         textViewResult = view.findViewById(R.id.textViewResult)
         buttonGenerate = view.findViewById(R.id.buttonGenerate)
 
+        // 🔮 Spinner içeriği burçlarla dolduruluyor
+        val signs = listOf("Koç", "Boğa", "İkizler", "Yengeç", "Aslan", "Başak", "Terazi", "Akrep", "Yay", "Oğlak", "Kova", "Balık")
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, signs)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        spinnerSun.adapter = adapter
+        spinnerMoon.adapter = adapter
+        spinnerRising.adapter = adapter
+
+        // İlk bilgilendirici mesaj
+        textViewResult.text = "Yorumunuzu görmek için yukarıdan burçları seçin ve butona basın."
+
         buttonGenerate.setOnClickListener {
             val sun = spinnerSun.selectedItem.toString()
             val moon = spinnerMoon.selectedItem.toString()
             val rising = spinnerRising.selectedItem.toString()
 
-            // Cinsiyet bilgisini al
             val sharedPref = requireActivity().getSharedPreferences("AstroPrefs", Context.MODE_PRIVATE)
             val gender = sharedPref.getString("gender", "") ?: ""
 

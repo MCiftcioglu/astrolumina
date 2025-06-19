@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:textSize="16sp"
-            android:text="Güneş Burcunuz:" />
+            android:text="Your Sun Sign:" />
 
         <TextView
             android:id="@+id/textSun"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:textSize="16sp"
-            android:text="Ay Burcunuz:" />
+            android:text="Your Moon Sign:" />
 
         <TextView
             android:id="@+id/textMoon"
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:textSize="16sp"
-            android:text="Yükselen Burcunuz:" />
+            android:text="Your Rising Sign:" />
 
         <TextView
             android:id="@+id/textRising"
@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Yorumla" />
+            android:text="Show my daily horoscope" />
 
         <!-- AI Yanıtı -->
         <TextView
@@ -73,7 +73,7 @@
             android:layout_height="159dp"
             android:layout_marginTop="24dp"
             android:layout_weight="1"
-            android:text="Yorum burada görünecek..."
+            android:text="Daily horoscope will appear here..."
             android:textColor="@android:color/white"
             android:textSize="16sp" />
 

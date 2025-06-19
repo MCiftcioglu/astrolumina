@@ -1,6 +1,5 @@
 package com.upidea.astrolumina.ui.auth
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -8,9 +7,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.upidea.astrolumina.databinding.ActivityLoginBinding
 import com.upidea.astrolumina.ui.HomeActivity
+import com.upidea.astrolumina.utils.AstroUtils
 import dagger.hilt.android.AndroidEntryPoint
-
-
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
@@ -31,9 +29,25 @@ class LoginActivity : AppCompatActivity() {
                 if (success) {
                     val user = viewModel.loggedInUser
                     val sharedPref = getSharedPreferences("AstroPrefs", MODE_PRIVATE)
+
+                    // Burçları doğum bilgilerine göre tekrar hesapla
+                    val (sun, moon, rising) = AstroUtils.calculateSignsViaPython(
+                        this,
+                        user?.birthDate ?: "",
+                        user?.birthTime ?: "",
+                        user?.birthPlace ?: ""
+                    )
+
                     sharedPref.edit().apply {
                         putBoolean("isLoggedIn", true)
-                        putString("userName", user?.name)
+                        putString("name", user?.name)
+                        putString("birthDate", user?.birthDate)
+                        putString("birthTime", user?.birthTime)
+                        putString("birthPlace", user?.birthPlace)
+                        putString("gender", user?.gender)
+                        putString("sunSign", sun)
+                        putString("moonSign", moon)
+                        putString("risingSign", rising)
                         apply()
                     }
 
@@ -42,8 +56,6 @@ class LoginActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(this, "Giriş başarısız", Toast.LENGTH_SHORT).show()
                 }
-
-
             }
         }
 

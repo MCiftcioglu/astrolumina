@@ -23,19 +23,19 @@ class OnboardingActivity : AppCompatActivity() {
         OnboardingItem(
             R.drawable.ic_birthmap2,
             "Doğum Haritanızı Çıkartın",
-            "Kozmik bağlantılarla kendinizi keşfedin.",
+            "Yıldızların doğduğunuz anki dizilimi, size özel bir kozmik harita sunar. Bu harita, kişiliğinizi, potansiyelinizi ve yaşam yolculuğunuzu anlamanıza yardımcı olur.",
             R.drawable.bg_chart
         ),
         OnboardingItem(
             R.drawable.ic_vedic2,
             "Ay Burcunuzu Öğrenin",
-            "Ay burcunuza göre öngörüler elde edin.",
+            "Vedik Astroloji,doğduğun anda gökyüzünde oluşan enerjileri rehber alarak içsel dünyanı ve yaşam amacını keşfetmeni sağlar.",
             R.drawable.bg_chart
         ),
         OnboardingItem(
             R.drawable.ic_match2,
             "Kozmik Uyumu Keşfedin",
-            "Derin bağ kurabileceğiniz insanlarla tanışın.",
+            "Her ruh bir eş arar. Kozmik uyum, sizinle benzer frekansta olan kişileri bulmanıza yardımcı olur.",
             R.drawable.bg_chart
         )
     )

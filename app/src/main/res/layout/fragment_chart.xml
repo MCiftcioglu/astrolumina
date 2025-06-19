@@ -57,13 +57,7 @@
                 android:layout_height="56dp"
                 android:layout_marginBottom="16dp" />
 
-            <!-- Buton -->
-            <Button
-                android:id="@+id/buttonGenerate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Yorumla"
-                android:layout_marginBottom="16dp" />
+
 
             <!-- Burç kartları -->
             <LinearLayout
@@ -75,31 +69,36 @@
 
                 <TextView
                     android:id="@+id/textSunSign"
-                    style="@style/AstroCardStyle"
-                    android:text="☀ Koç" />
+                    style="@style/AstroCardStyle" />
 
                 <TextView
                     android:id="@+id/textMoonSign"
-                    style="@style/AstroCardStyle"
-                    android:text="🌙 Yay" />
+                    style="@style/AstroCardStyle" />
 
                 <TextView
                     android:id="@+id/textRisingSign"
-                    style="@style/AstroCardStyle"
-                    android:text="⬆ Aslan" />
+                    style="@style/AstroCardStyle" />
             </LinearLayout>
+
+            <!-- Buton -->
+            <Button
+                android:id="@+id/buttonGenerate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Yorumla"
+                android:layout_marginBottom="16dp" />
 
             <!-- AI Yorum -->
             <TextView
                 android:id="@+id/textViewResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#EEEEEE"
-                android:textSize="16sp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/round_card_background"
                 android:lineSpacingExtra="6dp"
                 android:padding="12dp"
-                android:background="@drawable/round_card_background"
-                android:layout_marginBottom="16dp" />
+                android:textColor="#EEEEEE"
+                android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

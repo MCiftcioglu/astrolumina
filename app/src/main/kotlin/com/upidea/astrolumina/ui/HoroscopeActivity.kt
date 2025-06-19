@@ -3,6 +3,7 @@ package com.upidea.astrolumina.ui.horoscope
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -15,7 +16,6 @@ import com.upidea.astrolumina.ui.ChatActivity
 import com.upidea.astrolumina.ui.chart.ChartActivity
 import android.view.MenuItem
 
-
 class HoroscopeActivity : AppCompatActivity() {
 
     private lateinit var textSun: TextView
@@ -24,7 +24,6 @@ class HoroscopeActivity : AppCompatActivity() {
     private lateinit var textViewResult: TextView
     private lateinit var buttonGenerate: Button
     private lateinit var bottomNavigation: BottomNavigationView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,9 +38,16 @@ class HoroscopeActivity : AppCompatActivity() {
         bottomNavigation = findViewById(R.id.bottomNavigation)
 
         val sharedPref = getSharedPreferences("AstroPrefs", Context.MODE_PRIVATE)
-        textSun.text = sharedPref.getString("sunSign", "")
-        textMoon.text = sharedPref.getString("moonSign", "")
-        textRising.text = sharedPref.getString("risingSign", "")
+        val sun = sharedPref.getString("sunSign", "") ?: ""
+        val moon = sharedPref.getString("moonSign", "") ?: ""
+        val rising = sharedPref.getString("risingSign", "") ?: ""
+        val gender = sharedPref.getString("gender", "") ?: ""
+
+        textSun.text = sun
+        textMoon.text = moon
+        textRising.text = rising
+
+        Log.d("Horoscope", "Loaded signs: Sun=$sun, Moon=$moon, Rising=$rising, Gender=$gender")
 
         bottomNavigation.setOnItemSelectedListener { item: MenuItem ->
             when (item.itemId) {
@@ -65,26 +71,22 @@ class HoroscopeActivity : AppCompatActivity() {
             }
         }
 
-        // Tıklama ile yorum oluştur
         buttonGenerate.setOnClickListener {
-            val prefs = getSharedPreferences("AstroPrefs", Context.MODE_PRIVATE)
-            val sun = prefs.getString("sunSign", "") ?: ""
-            val moon = prefs.getString("moonSign", "") ?: ""
-            val rising = prefs.getString("risingSign", "") ?: ""
+            if (sun.isBlank() || moon.isBlank() || rising.isBlank()) {
+                Toast.makeText(this, "Burç bilgileriniz eksik. Lütfen doğum bilgilerinizi kontrol edin.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
 
-            // Kullanıcının kayıtlı cinsiyetini al
-            val gender = prefs.getString("gender", "") ?: ""
-
-            // AI için prompt oluştur
             val prompt = GeminiHelper.createAstrologyPrompt(sun, moon, rising, gender)
+            Log.d("Horoscope", "Generated prompt: $prompt")
 
-            // Gemini API ile yorum al
             GeminiService.getAstrologyInterpretation(prompt) { result ->
                 runOnUiThread {
-                    if (result != null) {
+                    if (!result.isNullOrBlank()) {
                         textViewResult.text = result
                     } else {
-                        Toast.makeText(this, "Yorum alınamadı.", Toast.LENGTH_SHORT).show()
+                        textViewResult.text = "Yorum alınamadı."
+                        Toast.makeText(this, "Yorum alınamadı. Lütfen daha sonra tekrar deneyin.", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

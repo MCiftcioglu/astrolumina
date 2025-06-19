@@ -4,7 +4,7 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
         maven("https://chaquo.com/maven")
-        //maven { url = uri("https://chaquo.com/maven") } // 🔧 Chaquopy plugin deposu
+        maven { url = uri("https://chaquo.com/maven") } // 🔧 Chaquopy plugin deposu
 
         }
 
@@ -19,7 +19,7 @@ dependencyResolutionManagement {
         mavenCentral()
         maven("https://chaquo.com/maven")
         maven { url = uri("https://jitpack.io") }
-        //maven { url = uri("https://chaquo.com/maven") } // 🔧 Chaquopy dependency deposu
+        maven { url = uri("https://chaquo.com/maven") } // 🔧 Chaquopy dependency deposu
     }
 }
 

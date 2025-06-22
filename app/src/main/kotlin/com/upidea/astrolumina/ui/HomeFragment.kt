@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.upidea.astrolumina.R
 import com.upidea.astrolumina.ui.chart.ChartActivity
-import com.upidea.astrolumina.ui.horoscope.HoroscopeActivity
+import com.upidea.astrolumina.ui.HoroscopeActivity
 import com.upidea.astrolumina.ui.match.MatchActivity
 import com.upidea.astrolumina.ui.premium.PremiumActivity
 import com.upidea.astrolumina.ui.vedic.VedicHoroscopeActivity

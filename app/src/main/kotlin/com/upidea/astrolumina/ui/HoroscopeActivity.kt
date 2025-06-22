@@ -1,4 +1,4 @@
-package com.upidea.astrolumina.ui.horoscope
+package com.upidea.astrolumina.ui
 
 import android.content.Context
 import android.content.Intent
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.upidea.astrolumina.R
 import com.upidea.astrolumina.api.GeminiService
@@ -15,6 +16,7 @@ import com.upidea.astrolumina.ui.HomeActivity
 import com.upidea.astrolumina.ui.ChatActivity
 import com.upidea.astrolumina.ui.chart.ChartActivity
 import android.view.MenuItem
+import kotlinx.coroutines.launch
 
 class HoroscopeActivity : AppCompatActivity() {
 
@@ -80,14 +82,20 @@ class HoroscopeActivity : AppCompatActivity() {
             val prompt = GeminiHelper.createAstrologyPrompt(sun, moon, rising, gender)
             Log.d("Horoscope", "Generated prompt: $prompt")
 
+            // Yorum alınıyor... mesajı gösterilebilir
+            textViewResult.text = "Günlük yorumunuz oluşturuluyor..."
+
+            lifecycleScope.launch {
+
             GeminiService.getAstrologyInterpretation(prompt) { result ->
                 runOnUiThread {
                     if (!result.isNullOrBlank()) {
                         textViewResult.text = result
                     } else {
                         textViewResult.text = "Yorum alınamadı."
-                        Toast.makeText(this, "Yorum alınamadı. Lütfen daha sonra tekrar deneyin.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@HoroscopeActivity, "Yorum alınamadı. Lütfen daha sonra tekrar deneyin.", Toast.LENGTH_SHORT).show()
                     }
+                }
                 }
             }
         }

@@ -14,6 +14,6 @@
         android:title="Messages" />
     <item
         android:id="@+id/navigation_chart"
-        android:icon="@drawable/ic_birthmap2"
+        android:icon="@drawable/ic_birthmap3"
         android:title="Birth Chart" />
 </menu>

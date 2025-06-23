@@ -26,6 +26,10 @@ android {
 
         python {
             buildPython "C:/Python39/python.exe"
+            pip {
+                install "skyfield"
+                install "pytz"
+            }
         }
 
         ndk {
@@ -60,6 +64,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.chaquo.python:chaquopy:15.0.0'
     implementation "androidx.core:core-ktx:1.12.0" // Specify a recent version explicitly
     implementation "androidx.activity:activity-ktx:1.8.2" // Specify a recent version explicitly
     implementation "androidx.appcompat:appcompat:1.6.1" // Specify a recent version explicitly

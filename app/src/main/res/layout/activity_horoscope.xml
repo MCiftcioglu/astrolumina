@@ -1,89 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_home"
     android:padding="16dp">
 
-
-
-    <!-- İçerik bloğu -->
+    <!-- Burç Bloğu -->
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/burcContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        android:padding="16dp">
-
-        <!-- Güneş Burcu -->
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- Sun Sign -->
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:text="Your Sun Sign:" />
-
-        <TextView
-            android:id="@+id/textSun"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white" />
-
-        <!-- Ay Burcu  -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:text="Your Moon Sign:" />
-
-        <TextView
-            android:id="@+id/textMoon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white" />
-
-        <!-- Yükselen Burç  -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:text="Your Rising Sign:" />
-
-        <TextView
-            android:id="@+id/textRising"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white" />
-
-        <!-- Buton -->
-        <Button
-            android:id="@+id/buttonGenerate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Show my daily horoscope" />
-
-        <!-- AI Yanıtı -->
-        <TextView
-            android:id="@+id/textViewResult"
-            android:layout_width="match_parent"
-            android:layout_height="159dp"
-            android:layout_marginTop="24dp"
             android:layout_weight="1"
-            android:text="Daily horoscope will appear here..."
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:orientation="vertical"
+            android:gravity="center">
 
-        <include
-            android:id="@+id/bottomNavigation"
-            layout="@layout/bottom_nav"
-            android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/imageSun"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_sun_placeholder"
+                android:contentDescription="Sun Sign" />
+
+            <TextView
+                android:id="@+id/textSun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:text="Sun" />
+        </LinearLayout>
+
+        <!-- Moon Sign -->
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom" />
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imageMoon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_vedic3"
+                android:contentDescription="Moon Sign" />
+
+            <TextView
+                android:id="@+id/textMoon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:text="Moon" />
+        </LinearLayout>
+
+        <!-- Rising Sign -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imageRising"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_rising"
+                android:contentDescription="Rising Sign" />
+
+            <TextView
+                android:id="@+id/textRising"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:text="Rising" />
+        </LinearLayout>
     </LinearLayout>
 
+    <!-- Yorum Butonu -->
+
+    <!-- Yorum Alanı -->
+
+    <Button
+        android:id="@+id/buttonGenerate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="SHOW MY DAILY HOROSCOPE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/burcContainer" />
+
+    <TextView
+        android:id="@+id/textViewResult"
+        android:layout_width="369dp"
+        android:layout_height="475dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
+        android:gravity="top"
+        android:padding="8dp"
+        android:text="Daily horoscope will appear here..."
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonGenerate" />
+
+    <!-- Alt Navigasyon -->
+    <include
+        android:id="@+id/bottomNavigation"
+        layout="@layout/bottom_nav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,9 +14,10 @@
         android:theme="@style/Theme.AstroLumina"
         tools:targetApi="31">
 
-        <!-- Onboarding artık açılış ekranı -->
-        <activity android:name=".ui.OnboardingActivity"
-        android:exported="true"
+        <!-- Launcher entry point -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,18 +25,50 @@
             </intent-filter>
         </activity>
 
-        <!-- Home screen shown after successful login -->
-        <activity android:name=".ui.HomeActivity" />
+        <!-- Onboarding screen -->
+        <activity
+            android:name=".ui.OnboardingActivity"
+            android:exported="false"
+            android:label="@string/app_name" />
 
-        <activity android:name=".ui.auth.LoginActivity" />
-        <activity android:name=".ui.auth.RegisterActivity" />
-        <activity android:name=".ui.ChatActivity" />
-        <activity android:name=".ui.premium.PremiumActivity" />
-        <activity android:name=".ui.HoroscopeActivity" />
-        <activity android:name=".ui.chart.ChartActivity" />
-        <activity android:name=".ui.match.MatchActivity" />
-        <activity android:name=".ui.ProfileActivity" />
+        <!-- Other internal screens -->
+        <activity
+            android:name=".ui.HomeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.auth.LoginActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.auth.RegisterActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.ChatActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.premium.PremiumActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.HoroscopeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.chart.ChartActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.match.MatchActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.ProfileActivity"
+            android:exported="false" />
 
     </application>
+
 
 </manifest>

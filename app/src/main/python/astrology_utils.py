@@ -17,7 +17,7 @@ def _sun_sign(day: int, month: int) -> str:
     if month == 5:
         return "Boğa" if day < 21 else "İkizler"
     if month == 6:
-        return "İkizler" if day < 22 else "Yengeç"
+        return "İkizler" if day < 21 else "Yengeç"
     if month == 7:
         return "Yengeç" if day < 23 else "Aslan"
     if month == 8:

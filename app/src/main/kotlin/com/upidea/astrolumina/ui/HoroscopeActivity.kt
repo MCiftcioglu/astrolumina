@@ -15,14 +15,18 @@ import com.upidea.astrolumina.ui.ProfileActivity
 import com.upidea.astrolumina.ui.HomeActivity
 import com.upidea.astrolumina.ui.ChatActivity
 import com.upidea.astrolumina.ui.chart.ChartActivity
-import android.view.MenuItem
 import kotlinx.coroutines.launch
+import android.view.MenuItem
+import android.widget.ImageView
 
 class HoroscopeActivity : AppCompatActivity() {
 
     private lateinit var textSun: TextView
     private lateinit var textMoon: TextView
     private lateinit var textRising: TextView
+    private lateinit var imageSun: ImageView
+    private lateinit var imageMoon: ImageView
+    private lateinit var imageRising: ImageView
     private lateinit var textViewResult: TextView
     private lateinit var buttonGenerate: Button
     private lateinit var bottomNavigation: BottomNavigationView
@@ -35,6 +39,9 @@ class HoroscopeActivity : AppCompatActivity() {
         textSun = findViewById(R.id.textSun)
         textMoon = findViewById(R.id.textMoon)
         textRising = findViewById(R.id.textRising)
+        imageSun = findViewById(R.id.imageSun)
+        imageMoon = findViewById(R.id.imageMoon)
+        imageRising = findViewById(R.id.imageRising)
         textViewResult = findViewById(R.id.textViewResult)
         buttonGenerate = findViewById(R.id.buttonGenerate)
         bottomNavigation = findViewById(R.id.bottomNavigation)
@@ -48,6 +55,28 @@ class HoroscopeActivity : AppCompatActivity() {
         textSun.text = sun
         textMoon.text = moon
         textRising.text = rising
+
+        // Sun Sign için ikon seçimi
+        val sunDrawableId = when (sun.lowercase()) {
+            "koç" -> R.drawable.aries_icon
+            "boğa" -> R.drawable.taurus_icon
+            "ikizler" -> R.drawable.gemini_icon
+            "yengeç" -> R.drawable.cancer_icon
+            "aslan" -> R.drawable.leo_icon
+            "başak" -> R.drawable.virgo_icon
+            "terazi" -> R.drawable.libra_icon
+            "akrep" -> R.drawable.scorpio_icon
+            "yay" -> R.drawable.sagittarius_icon
+            "oğlak" -> R.drawable.capricorn_icon
+            "kova" -> R.drawable.aquarius_icon
+            "balık" -> R.drawable.pisces_icon
+            else -> R.drawable.ic_sun_placeholder
+        }
+        imageSun.setImageResource(sunDrawableId)
+
+        // Diğer ikonlar sabit
+        imageMoon.setImageResource(R.drawable.ic_vedic3)
+        imageRising.setImageResource(R.drawable.ic_rising)
 
         Log.d("Horoscope", "Loaded signs: Sun=$sun, Moon=$moon, Rising=$rising, Gender=$gender")
 
@@ -82,20 +111,18 @@ class HoroscopeActivity : AppCompatActivity() {
             val prompt = GeminiHelper.createAstrologyPrompt(sun, moon, rising, gender)
             Log.d("Horoscope", "Generated prompt: $prompt")
 
-            // Yorum alınıyor... mesajı gösterilebilir
             textViewResult.text = "Günlük yorumunuz oluşturuluyor..."
 
             lifecycleScope.launch {
-
-            GeminiService.getAstrologyInterpretation(prompt) { result ->
-                runOnUiThread {
-                    if (!result.isNullOrBlank()) {
-                        textViewResult.text = result
-                    } else {
-                        textViewResult.text = "Yorum alınamadı."
-                        Toast.makeText(this@HoroscopeActivity, "Yorum alınamadı. Lütfen daha sonra tekrar deneyin.", Toast.LENGTH_SHORT).show()
+                GeminiService.getAstrologyInterpretation(prompt) { result ->
+                    runOnUiThread {
+                        if (!result.isNullOrBlank()) {
+                            textViewResult.text = result
+                        } else {
+                            textViewResult.text = "Yorum alınamadı."
+                            Toast.makeText(this@HoroscopeActivity, "Yorum alınamadı. Lütfen daha sonra tekrar deneyin.", Toast.LENGTH_SHORT).show()
+                        }
                     }
-                }
                 }
             }
         }

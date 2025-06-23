@@ -14,15 +14,21 @@
         android:theme="@style/Theme.AstroLumina"
         tools:targetApi="31">
 
-        <!-- Onboarding artık açılış ekranı -->
-        <activity android:name=".ui.OnboardingActivity"
-        android:exported="true"
+
+        <!-- Launcher entry point -->
+        <activity android:name=".ui.MainActivity"
+            android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Onboarding screen -->
+        <activity android:name=".ui.OnboardingActivity"
+            android:exported="false"
+            android:label="@string/app_name" />
 
         <!-- Home screen shown after successful login -->
         <activity android:name=".ui.HomeActivity" />

@@ -26,7 +26,6 @@
 
         <!-- Home screen shown after successful login -->
         <activity android:name=".ui.HomeActivity" />
-
         <activity android:name=".ui.auth.LoginActivity" />
         <activity android:name=".ui.auth.RegisterActivity" />
         <activity android:name=".ui.ChatActivity" />

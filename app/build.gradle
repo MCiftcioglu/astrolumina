@@ -24,27 +24,22 @@ android {
         versionCode 1
         versionName "1.0"
 
-        python {
-            buildPython "C:/Python39/python.exe"
-            pip {
-                install "skyfield"
-                install "pytz"
-            }
-        }
-
-        ndk {
-            abiFilters "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
-        }
-
         // API Key tanımı - local.properties'ten okunur
         def geminiApiKey = localProperties.getProperty("GEMINI_API_KEY") ?: ""
         buildConfigField "String", "GEMINI_API_KEY", "\"${geminiApiKey}\""
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // ✅ NDK abiFilters defaultConfig içinde
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -63,21 +58,46 @@ android {
     }
 }
 
+// ✅ Chaquopy Python konfigürasyonu - android bloğunun DIŞINDA
+python {
+    buildPython "C:/Python39/python.exe"
+    pip {
+        // Python paketlerini buraya ekleyebilirsiniz
+        // install "numpy"
+        // install "pandas"
+    }
+}
+
 dependencies {
-    implementation 'com.chaquo.python:chaquopy:15.0.0'
-    implementation "androidx.core:core-ktx:1.12.0" // Specify a recent version explicitly
-    implementation "androidx.activity:activity-ktx:1.8.2" // Specify a recent version explicitly
-    implementation "androidx.appcompat:appcompat:1.6.1" // Specify a recent version explicitly
+    // Core Android
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.activity:activity-ktx:1.8.2'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // Network & Coroutines
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
     implementation 'org.json:json:20231013'
-    implementation "com.google.dagger:hilt-android:2.48"
-    implementation "com.tbuonomo:dotsindicator:4.3"
-    implementation "androidx.room:room-ktx:2.6.1"
-    kapt "com.google.dagger:hilt-compiler:2.48"
-    implementation "androidx.room:room-runtime:2.6.1"
-    kapt "androidx.room:room-compiler:2.6.1"
-    implementation("com.google.ai.client.generativeai:generativeai:0.3.0")
+
+    // Hilt Dependency Injection
+    implementation 'com.google.dagger:hilt-android:2.48'
+    kapt 'com.google.dagger:hilt-compiler:2.48'
+
+    // Room Database
+    implementation 'androidx.room:room-runtime:2.6.1'
+    implementation 'androidx.room:room-ktx:2.6.1'
+    kapt 'androidx.room:room-compiler:2.6.1'
+
+    // UI Components
+    implementation 'com.tbuonomo:dotsindicator:4.3'
+
+    // AI/ML
+    implementation 'com.google.ai.client.generativeai:generativeai:0.3.0'
+
+    // Test dependencies
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }

@@ -1,4 +1,5 @@
 buildscript {
+    ext.kotlin_version = "1.8.22"  // veya projenin ihtiyaç duyduğu Kotlin sürümü
     repositories {
         google()
         mavenCentral()
@@ -6,16 +7,11 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.2.2'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22'
-        classpath 'com.chaquo.python:gradle:15.0.1' // ✅ Tutarlı versiyon
-        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.48'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"    // ← Mutlaka ekleyin
+        classpath 'com.chaquo.python:gradle:16.1.0'
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.44'
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url "https://chaquo.com/maven" }
-    }
-}
+// Bu dosyada başka plugin {} veya apply plugin:{} bloğu olmamalı.
+// Sadece buildscript ve yukarıdaki classpath bağımlılıkları.

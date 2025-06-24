@@ -1,16 +1,15 @@
-plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-    id 'com.chaquo.python'
-    id 'dagger.hilt.android.plugin'
-    id 'kotlin-kapt'
-}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'com.chaquo.python'
 
-// local.properties dosyasından property'leri oku
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
-    localProperties.load(new FileInputStream(localPropertiesFile))
+    localPropertiesFile.withInputStream { inputStream ->
+        localProperties.load(inputStream)
+    }
 }
 
 android {
@@ -19,85 +18,96 @@ android {
 
     defaultConfig {
         applicationId "com.upidea.astrolumina"
-        minSdk 26
+        minSdk 24
         targetSdk 34
         versionCode 1
         versionName "1.0"
-
-        // API Key tanımı - local.properties'ten okunur
-        def geminiApiKey = localProperties.getProperty("GEMINI_API_KEY") ?: ""
-        buildConfigField "String", "GEMINI_API_KEY", "\"${geminiApiKey}\""
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        // ✅ NDK abiFilters defaultConfig içinde
-        ndk {
-            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        // Chaquopy için gerekli: hangi ABI’leri paketleyeceğiz?
+             ndk {
+                     abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
         }
+
+        python {
+            // Kendi sistemindeki python.exe yolunu buraya yaz
+            buildPython "C:/Python39/python.exe"
+            pip {
+                install "skyfield"
+                install "pytz"
+            }
+        }
+        // Get API key from local.properties
+        buildConfigField "String", "GEMINI_API_KEY", "\"${localProperties.getProperty('GEMINI_API_KEY', '')}\""
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                    'proguard-rules.pro'
         }
     }
 
-    buildFeatures {
-        buildConfig true
-        viewBinding true
-    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
-
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = '17'
     }
-}
 
-// ✅ Chaquopy Python konfigürasyonu - android bloğunun DIŞINDA
-python {
-    buildPython "C:/Python39/python.exe"
-    pip {
-        // Python paketlerini buraya ekleyebilirsiniz
-        // install "numpy"
-        // install "pandas"
+    buildFeatures {
+        viewBinding true
+        buildConfig true
     }
 }
 
 dependencies {
-    // Core Android
-    implementation 'androidx.core:core-ktx:1.12.0'
-    implementation 'androidx.activity:activity-ktx:1.8.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    // AndroidX
+    implementation 'androidx.core:core-ktx:1.13.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-    // Network & Coroutines
-    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    // Dagger Hilt
+    implementation 'com.google.dagger:hilt-android:2.44'
+    kapt 'com.google.dagger:hilt-android-compiler:2.44'
+
+    // Room
+    implementation 'androidx.room:room-runtime:2.5.1'
+    kapt 'androidx.room:room-compiler:2.5.1'
+    implementation 'androidx.room:room-ktx:2.5.1'
+
+    // Lifecycle & ViewModel
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
+
+    // Activity KTX - viewModels() delegate için gerekli
+    implementation 'androidx.activity:activity-ktx:1.8.2'
+
+    // Fragment KTX - viewModels() delegate için gerekli (eğer fragment kullanıyorsanız)
+    implementation 'androidx.fragment:fragment-ktx:1.6.2'
+
+    // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
-    implementation 'org.json:json:20231013'
 
-    // Hilt Dependency Injection
-    implementation 'com.google.dagger:hilt-android:2.48'
-    kapt 'com.google.dagger:hilt-compiler:2.48'
+    // Networking (Retrofit + Gson) — eğer GeminiService Retrofit kullanıyorsa
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
 
-    // Room Database
-    implementation 'androidx.room:room-runtime:2.6.1'
-    implementation 'androidx.room:room-ktx:2.6.1'
-    kapt 'androidx.room:room-compiler:2.6.1'
+    // Chaquopy
+    implementation 'com.chaquo.python.runtime:chaquopy:16.1.0'
 
-    // UI Components
     implementation 'com.tbuonomo:dotsindicator:4.3'
 
-    // AI/ML
-    implementation 'com.google.ai.client.generativeai:generativeai:0.3.0'
-
-    // Test dependencies
+    // Test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+
 }

@@ -1,19 +1,18 @@
 pluginManagement {
     repositories {
         google()
-        mavenCentral()
         gradlePluginPortal()
-        maven("https://chaquo.com/maven") // ✅ Chaquopy için gerekli
+        mavenCentral()
+        maven { url = uri("https://chaquo.com/maven") }
     }
+    // Chaquopy plugin DSL ile değil, buildscript üzerinden yüklenecek → burada plugins bloğuna gerek yok
 }
 
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
         google()
         mavenCentral()
-        maven("https://chaquo.com/maven") // ✅ Chaquopy için gerekli
-        maven("https://jitpack.io")
+        maven { url = uri("https://chaquo.com/maven") }
     }
 }
 

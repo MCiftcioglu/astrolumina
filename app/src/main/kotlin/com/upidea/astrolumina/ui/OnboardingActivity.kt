@@ -21,20 +21,20 @@ class OnboardingActivity : AppCompatActivity() {
     private val onboardingItems = listOf(
         OnboardingItem(
             R.drawable.ic_birthmap2,
-            "Doğum Haritanızı Çıkartın",
-            "Yıldızların doğduğunuz anki dizilimi, size özel bir kozmik harita sunar. Bu harita, kişiliğinizi, potansiyelinizi ve yaşam yolculuğunuzu anlamanıza yardımcı olur.",
+            "Generate Your Birth Chart",
+            "The arrangement of the stars at your birth forms a unique cosmic map. This chart helps you understand your personality, potential, and life journey.",
             R.drawable.bg_chart
         ),
         OnboardingItem(
             R.drawable.ic_vedic2,
-            "Ay Burcunuzu Öğrenin",
-            "Vedik Astroloji, doğduğun anda gökyüzünde oluşan enerjileri rehber alarak içsel dünyanı ve yaşam amacını keşfetmeni sağlar.",
+            "Discover Your Moon Sign",
+            "Vedic Astrology uses the energies present at your birth to explore your inner world and life purpose.",
             R.drawable.bg_chart
         ),
         OnboardingItem(
             R.drawable.ic_match2,
-            "Kozmik Uyumu Keşfedin",
-            "Her ruh bir eş arar. Kozmik uyum, sizinle benzer frekansta olan kişileri bulmanıza yardımcı olur.",
+            "Explore Cosmic Compatibility",
+            "Every soul seeks a match. Cosmic compatibility helps you connect with people on a similar wavelength.",
             R.drawable.bg_chart
         )
 
@@ -73,7 +73,7 @@ class OnboardingActivity : AppCompatActivity() {
         // Sayfa değişimine göre buton metnini güncelle
         binding.viewPagerOnboarding.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                binding.buttonNext.text = if (position == onboardingItems.lastIndex) "Başla" else "İleri"
+                binding.buttonNext.text = if (position == onboardingItems.lastIndex) "Start" else "Next"
             }
         })
     }

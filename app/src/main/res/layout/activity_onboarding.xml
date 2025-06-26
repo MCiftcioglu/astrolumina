@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.OnboardingActivity">
@@ -23,7 +24,7 @@
             <ImageView
                 android:layout_width="184dp"
                 android:layout_height="184dp"
-                android:src="@drawable/ic_birthmap2"
+                android:src="@drawable/ic_sun_placeholder"
                 android:contentDescription="Onboarding Görsel 1" />
 
             <ImageView
@@ -38,6 +39,17 @@
                 android:src="@drawable/ic_match2"
                 android:contentDescription="Onboarding Görsel 3" />
 
+            <ImageView
+                android:layout_width="184dp"
+                android:layout_height="184dp"
+                android:src="@drawable/on_basak"
+                android:contentDescription="Onboarding Görsel 4" />
+
+            <ImageView
+                android:layout_width="184dp"
+                android:layout_height="184dp"
+                android:src="@drawable/ic_rising"
+                android:contentDescription="Onboarding Görsel 5" />
         </ViewFlipper>
 
         <!-- Onboarding sayfaları -->

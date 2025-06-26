@@ -2,17 +2,16 @@ package com.upidea.astrolumina.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+import com.upidea.astrolumina.R
+import com.upidea.astrolumina.adapters.OnboardingPagerAdapter
 import com.upidea.astrolumina.databinding.ActivityOnboardingBinding
 import com.upidea.astrolumina.model.OnboardingItem
 import com.upidea.astrolumina.ui.auth.LoginActivity
 import com.upidea.astrolumina.utils.OnboardingPref
-import com.upidea.astrolumina.R
-import com.upidea.astrolumina.adapters.OnboardingPagerAdapter
-
-
 
 class OnboardingActivity : AppCompatActivity() {
 
@@ -29,7 +28,7 @@ class OnboardingActivity : AppCompatActivity() {
         OnboardingItem(
             R.drawable.ic_vedic2,
             "Ay Burcunuzu Öğrenin",
-            "Vedik Astroloji,doğduğun anda gökyüzünde oluşan enerjileri rehber alarak içsel dünyanı ve yaşam amacını keşfetmeni sağlar.",
+            "Vedik Astroloji, doğduğun anda gökyüzünde oluşan enerjileri rehber alarak içsel dünyanı ve yaşam amacını keşfetmeni sağlar.",
             R.drawable.bg_chart
         ),
         OnboardingItem(
@@ -38,6 +37,7 @@ class OnboardingActivity : AppCompatActivity() {
             "Her ruh bir eş arar. Kozmik uyum, sizinle benzer frekansta olan kişileri bulmanıza yardımcı olur.",
             R.drawable.bg_chart
         )
+
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,29 +45,35 @@ class OnboardingActivity : AppCompatActivity() {
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // ViewFlipper için fade animasyonları
+        binding.imageFlipper.apply {
+            inAnimation = AnimationUtils.loadAnimation(this@OnboardingActivity, android.R.anim.fade_in)
+            outAnimation = AnimationUtils.loadAnimation(this@OnboardingActivity, android.R.anim.fade_out)
+            startFlipping()
+        }
+
+        // Onboarding ViewPager ayarları
         adapter = OnboardingPagerAdapter(onboardingItems)
         binding.viewPagerOnboarding.adapter = adapter
 
-        // dots indicator bağlama
-        val dotsIndicator = findViewById<WormDotsIndicator>(R.id.dotsIndicator)
-        dotsIndicator.attachTo(binding.viewPagerOnboarding)
+        // DotsIndicator bağlama
+        binding.dotsIndicator.attachTo(binding.viewPagerOnboarding)
 
-        // ileri butonu
+        // İleri/Başla butonu
         binding.buttonNext.setOnClickListener {
             if (binding.viewPagerOnboarding.currentItem < onboardingItems.lastIndex) {
                 binding.viewPagerOnboarding.currentItem += 1
             } else {
                 OnboardingPref(this).setOnboardingSeen()
-                startActivity(Intent(this, LoginActivity::class.java)) // ← yönlendirme eklendi
+                startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
         }
 
-        // ViewPager sayfa değişimiyle buton metnini güncelle
+        // Sayfa değişimine göre buton metnini güncelle
         binding.viewPagerOnboarding.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                binding.buttonNext.text =
-                    if (position == onboardingItems.lastIndex) "Başla" else "İleri"
+                binding.buttonNext.text = if (position == onboardingItems.lastIndex) "Başla" else "İleri"
             }
         })
     }

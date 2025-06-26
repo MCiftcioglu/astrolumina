@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -29,7 +28,7 @@ class HomeFragment : Fragment() {
         val name = sharedPref.getString("name", null)
 
         val welcomeText = view.findViewById<TextView>(R.id.textWelcome)
-        val logoutButton = view.findViewById<Button>(R.id.buttonLogout)
+
         val dailyCard = view.findViewById<CardView>(R.id.cardDaily)
         val chartCard = view.findViewById<CardView>(R.id.cardChart)
         val matchCard = view.findViewById<CardView>(R.id.cardMatch)
@@ -46,12 +45,7 @@ class HomeFragment : Fragment() {
             dailyImage.setImageResource(resId)
         }
 
-        logoutButton.setOnClickListener {
-            sharedPref.edit().clear().apply()
-            val intent = Intent(requireContext(), LoginActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish()
-        }
+
 
         dailyCard.setOnClickListener {
             startActivity(Intent(requireContext(), HoroscopeActivity::class.java))

@@ -13,50 +13,55 @@ import okhttp3.Response
 import org.json.JSONObject
 import java.io.IOException
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+
 object GeminiService {
 
     private const val TAG = "GeminiService"
     private const val BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
     private val JSON = "application/json; charset=utf-8".toMediaType()
 
-    fun getAstrologyInterpretation(prompt: String, callback: (String?) -> Unit) {
-        val apiKey = BuildConfig.GEMINI_API_KEY
+    suspend fun getAstrologyInterpretation(prompt: String): String? {
+        return withContext(Dispatchers.IO) {
+            val apiKey = BuildConfig.GEMINI_API_KEY
 
-        val requestBody = JSONObject().apply {
-            put("contents", listOf(
-                mapOf("parts" to listOf(mapOf("text" to prompt)))
-            ))
-        }.toString().toRequestBody(JSON)
+            val requestBody = JSONObject().apply {
+                put("contents", listOf(
+                    mapOf("parts" to listOf(mapOf("text" to prompt)))
+                ))
+            }.toString().toRequestBody(JSON)
 
-        val request = Request.Builder()
-            .url("$BASE_URL?key=$apiKey")
-            .post(requestBody)
-            .build()
+            val request = Request.Builder()
+                .url("$BASE_URL?key=$apiKey")
+                .post(requestBody)
+                .build()
 
-        OkHttpClient().newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                Log.e(TAG, "API call failed", e)
-                callback(null)
-            }
+            try {
+                val response = OkHttpClient().newCall(request).execute()
+                val responseBody = response.body?.string()
 
-            override fun onResponse(call: Call, response: Response) {
-                response.use {
-                    if (!it.isSuccessful) {
-                        Log.e(TAG, "Unexpected response: ${response.code}")
-                        callback(null)
-                    } else {
-                        val json = JSONObject(it.body?.string() ?: "")
-                        val candidates = json.optJSONArray("candidates")
-                        val content = candidates?.optJSONObject(0)
-                            ?.optJSONObject("content")
-                            ?.optJSONArray("parts")
-                            ?.optJSONObject(0)
-                            ?.optString("text")
+                if (!response.isSuccessful) {
+                    Log.e(TAG, "Unexpected response: ${response.code}")
+                    Log.e(TAG, "Response body: $responseBody")
+                    null
+                } else {
+                    Log.d(TAG, "Response body: $responseBody")
+                    val json = JSONObject(responseBody ?: "")
+                    val candidates = json.optJSONArray("candidates")
+                    val content = candidates?.optJSONObject(0)
+                        ?.optJSONObject("content")
+                        ?.optJSONArray("parts")
+                        ?.optJSONObject(0)
+                        ?.optString("text")
 
-                        callback(content)
-                    }
+                    Log.d(TAG, "Parsed content: $content")
+                    content
                 }
+            } catch (e: IOException) {
+                Log.e(TAG, "API call failed", e)
+                null
             }
-        })
+        }
     }
 }

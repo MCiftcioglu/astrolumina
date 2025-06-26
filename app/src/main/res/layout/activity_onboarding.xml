@@ -5,60 +5,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_home">
+    android:background="@drawable/bg_home"
+    tools:context=".ui.OnboardingActivity">
 
-    <!-- Logo -->
-    <ImageView
-        android:id="@+id/imageLogo"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/astro_trans"
-        android:contentDescription="Astrolumia Logo"
-        app:layout_constraintTop_toTopOf="parent"
+
+
+    <!-- ViewFlipper: animasyonlu resimler -->
+    <ViewFlipper
+        android:id="@+id/imageFlipper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:flipInterval="2000"
+        android:autoStart="true"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <ImageView
+            android:layout_width="184dp"
+            android:layout_height="184dp"
+            android:contentDescription="Onboarding Görsel 1"
+            android:src="@drawable/on_yengec" />
+
+        <ImageView
+            android:layout_width="184dp"
+            android:layout_height="184dp"
+            android:src="@drawable/ic_vedic2"
+            android:contentDescription="Onboarding Görsel 2" />
+
+        <ImageView
+            android:layout_width="184dp"
+            android:layout_height="184dp"
+            android:src="@drawable/ic_match2"
+            android:contentDescription="Onboarding Görsel 3" />
+
+        <ImageView
+            android:layout_width="184dp"
+            android:layout_height="184dp"
+            android:src="@drawable/ic_sun_placeholder"
+            android:contentDescription="Onboarding Görsel 4" />
+
+        <ImageView
+            android:layout_width="184dp"
+            android:layout_height="184dp"
+            android:src="@drawable/on_basak"
+            android:contentDescription="Onboarding Görsel 5" />
+    </ViewFlipper>
+
+    <!-- Onboarding sayfaları -->
+
+    <!-- Nokta göstergesi -->
+
+    <!-- İleri / Başla butonu -->
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerOnboarding"
-        android:layout_width="417dp"
-        android:layout_height="516dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="405dp"
+        android:layout_height="376dp"
         android:paddingHorizontal="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/dotsIndicator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageLogo"
-        app:layout_constraintVertical_bias="0.989" />
+        app:layout_constraintTop_toBottomOf="@+id/imageFlipper"
+        app:layout_constraintVertical_bias="0.574" />
 
     <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
         android:id="@+id/dotsIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="28dp"
         app:dotsColor="#6247ea"
         app:layout_constraintBottom_toTopOf="@id/buttonNext"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingClass" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Continue / Start button -->
     <Button
         android:id="@+id/buttonNext"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="#6247ea"
-        android:text="Devam Et"
+        android:fontFamily="@font/parkinsans_regular"
+        android:text="Next"
         android:textColor="@android:color/white"
         android:textSize="16sp"
-        android:fontFamily="@font/parkinsans_regular"
         app:cornerRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,8 @@ import android.content.Intent
 import android.content.Context
 import android.os.Bundle
 import android.widget.*
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.upidea.astrolumina.R
@@ -29,6 +31,64 @@ class RegisterActivity : AppCompatActivity() {
         val editBirthPlace = findViewById<EditText>(R.id.editTextBirthPlace)
         val radioGroupGender = findViewById<RadioGroup>(R.id.radioGroupGender)
         val buttonRegister = findViewById<Button>(R.id.buttonRegister)
+
+        // Automatically insert slashes while typing the birth date (DD/MM/YYYY)
+        editBirthDate.addTextChangedListener(object : TextWatcher {
+            private var isFormatting = false
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                if (isFormatting) return
+                isFormatting = true
+
+                val digits = s.toString().filter { it.isDigit() }
+                val builder = StringBuilder()
+                for (i in digits.indices) {
+                    builder.append(digits[i])
+                    if (i == 1 || i == 3) builder.append('/')
+                }
+                if (builder.length > 10) builder.setLength(10)
+
+                val formatted = builder.toString()
+                if (formatted != s.toString()) {
+                    s?.replace(0, s.length, formatted)
+                }
+
+                isFormatting = false
+            }
+        })
+
+        // Automatically insert a colon while typing the birth time (HH:MM)
+        editBirthTime.addTextChangedListener(object : TextWatcher {
+            private var isFormatting = false
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                if (isFormatting) return
+                isFormatting = true
+
+                val digits = s.toString().filter { it.isDigit() }
+                val builder = StringBuilder()
+                for (i in digits.indices) {
+                    builder.append(digits[i])
+                    if (i == 1) builder.append(':')
+                }
+                if (builder.length > 5) builder.setLength(5)
+
+                val formatted = builder.toString()
+                if (formatted != s.toString()) {
+                    s?.replace(0, s.length, formatted)
+                }
+
+                isFormatting = false
+            }
+        })
 
         buttonRegister.setOnClickListener {
             val email = editEmail.text.toString().trim()

@@ -17,6 +17,9 @@ class ChartFragment : Fragment() {
     private lateinit var spinnerSun: Spinner
     private lateinit var spinnerMoon: Spinner
     private lateinit var spinnerRising: Spinner
+    private lateinit var textSunSign: TextView
+    private lateinit var textMoonSign: TextView
+    private lateinit var textRisingSign: TextView
     private lateinit var textViewResult: TextView
     private lateinit var buttonGenerate: Button
 
@@ -33,27 +36,31 @@ class ChartFragment : Fragment() {
         spinnerSun = view.findViewById(R.id.spinnerSun)
         spinnerMoon = view.findViewById(R.id.spinnerMoon)
         spinnerRising = view.findViewById(R.id.spinnerRising)
+        textSunSign = view.findViewById(R.id.textSunSign)
+        textMoonSign = view.findViewById(R.id.textMoonSign)
+        textRisingSign = view.findViewById(R.id.textRisingSign)
         textViewResult = view.findViewById(R.id.textViewResult)
         buttonGenerate = view.findViewById(R.id.buttonGenerate)
 
-        // 🔮 Spinner içeriği burçlarla dolduruluyor
-        val signs = listOf("Koç", "Boğa", "İkizler", "Yengeç", "Aslan", "Başak", "Terazi", "Akrep", "Yay", "Oğlak", "Kova", "Balık")
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, signs)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        // 🔮 Kaydedilmiş burçları oku ve göster
+        val sharedPref = requireActivity().getSharedPreferences("AstroPrefs", Context.MODE_PRIVATE)
+        val sun = sharedPref.getString("sunSign", "Koç") ?: "Koç"
+        val moon = sharedPref.getString("moonSign", "Boğa") ?: "Boğa"
+        val rising = sharedPref.getString("risingSign", "İkizler") ?: "İkizler"
 
-        spinnerSun.adapter = adapter
-        spinnerMoon.adapter = adapter
-        spinnerRising.adapter = adapter
+        textSunSign.text = sun
+        textMoonSign.text = moon
+        textRisingSign.text = rising
+
+        spinnerSun.visibility = View.GONE
+        spinnerMoon.visibility = View.GONE
+        spinnerRising.visibility = View.GONE
 
         // İlk bilgilendirici mesaj
-        textViewResult.text = "Yorumunuzu görmek için yukarıdan burçları seçin ve butona basın."
+        textViewResult.text = "Click the button to see your birth map."
 
         buttonGenerate.setOnClickListener {
-            val sun = spinnerSun.selectedItem.toString()
-            val moon = spinnerMoon.selectedItem.toString()
-            val rising = spinnerRising.selectedItem.toString()
 
-            val sharedPref = requireActivity().getSharedPreferences("AstroPrefs", Context.MODE_PRIVATE)
             val gender = sharedPref.getString("gender", "") ?: ""
 
             val prompt = GeminiHelper.createAstrologyPrompt(sun, moon, rising, gender)

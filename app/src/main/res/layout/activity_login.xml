@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:gravity="center"
-        android:text="Giriş Yap"
+        android:text="Login"
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold" />
@@ -26,7 +26,7 @@
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="E-posta"
+        android:hint="E-mail"
         android:inputType="textEmailAddress"
         android:backgroundTint="#FFFFFF"
         android:textColor="#FFFFFF"
@@ -39,7 +39,7 @@
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Şifre"
+        android:hint="Password"
         android:inputType="textPassword"
         android:backgroundTint="#FFFFFF"
         android:textColor="#FFFFFF"
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:backgroundTint="#1B263B"
-        android:text="Giriş Yap"
+        android:text="Login"
         android:textAllCaps="false"
         android:textColor="#FFFFFF" />
 
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:backgroundTint="#7965C1"
-        android:text="Kayıt Ol"
+        android:text="Register"
         android:textAllCaps="false"
         android:textColor="#FFFFFF" />
 

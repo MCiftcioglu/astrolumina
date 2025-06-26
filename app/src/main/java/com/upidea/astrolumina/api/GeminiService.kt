@@ -1,7 +1,6 @@
 package com.upidea.astrolumina.api
 
 import android.util.Log
-import com.upidea.astrolumina.BuildConfig
 import com.upidea.astrolumina.utils.GeminiHelper
 import okhttp3.Call
 import okhttp3.Callback
@@ -24,7 +23,8 @@ object GeminiService {
 
     suspend fun getAstrologyInterpretation(prompt: String): String? {
         return withContext(Dispatchers.IO) {
-            val apiKey = BuildConfig.GEMINI_API_KEY
+            // Reference BuildConfig with fully qualified name to avoid IDE resolution issues
+            val apiKey = com.upidea.astrolumina.BuildConfig.GEMINI_API_KEY
 
             val requestBody = JSONObject().apply {
                 put("contents", listOf(

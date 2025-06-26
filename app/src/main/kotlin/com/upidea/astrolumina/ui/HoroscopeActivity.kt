@@ -104,24 +104,24 @@ class HoroscopeActivity : AppCompatActivity() {
 
         buttonGenerate.setOnClickListener {
             if (sun.isBlank() || moon.isBlank() || rising.isBlank()) {
-                Toast.makeText(this, "Burç bilgileriniz eksik. Lütfen doğum bilgilerinizi kontrol edin.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Your horoscope information is incomplete. Please check your birth information.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
             val prompt = GeminiHelper.createAstrologyPrompt(sun, moon, rising, gender)
             Log.d("Horoscope", "Generated prompt: $prompt")
 
-            textViewResult.text = "Günlük yorumunuz oluşturuluyor..."
+            textViewResult.text = "The celestial movements that affect you are being examined..."
 
             lifecycleScope.launch {
                 val result = GeminiService.getAstrologyInterpretation(prompt)
                 if (!result.isNullOrBlank()) {
                     textViewResult.text = result
                 } else {
-                    textViewResult.text = "Yorum alınamadı."
+                    textViewResult.text = "Comment not retrieved."
                     Toast.makeText(
                         this@HoroscopeActivity,
-                        "Yorum alınamadı. Lütfen daha sonra tekrar deneyin.",
+                        "Comment not retrieved. Please try again later.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

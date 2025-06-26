@@ -114,15 +114,16 @@ class HoroscopeActivity : AppCompatActivity() {
             textViewResult.text = "Günlük yorumunuz oluşturuluyor..."
 
             lifecycleScope.launch {
-                GeminiService.getAstrologyInterpretation(prompt) { result ->
-                    runOnUiThread {
-                        if (!result.isNullOrBlank()) {
-                            textViewResult.text = result
-                        } else {
-                            textViewResult.text = "Yorum alınamadı."
-                            Toast.makeText(this@HoroscopeActivity, "Yorum alınamadı. Lütfen daha sonra tekrar deneyin.", Toast.LENGTH_SHORT).show()
-                        }
-                    }
+                val result = GeminiService.getAstrologyInterpretation(prompt)
+                if (!result.isNullOrBlank()) {
+                    textViewResult.text = result
+                } else {
+                    textViewResult.text = "Yorum alınamadı."
+                    Toast.makeText(
+                        this@HoroscopeActivity,
+                        "Yorum alınamadı. Lütfen daha sonra tekrar deneyin.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }

@@ -33,6 +33,8 @@ android {
             pip {
                 install "skyfield"
                 install "pytz"
+                install "geopy"
+                install "timezonefinder"
             }
         }
         // Get API key from local.properties

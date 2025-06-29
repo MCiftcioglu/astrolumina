@@ -38,46 +38,79 @@
                 android:gravity="center"
                 android:layout_marginBottom="16dp" />
 
-            <!-- Spinnerlar -->
-            <Spinner
-                android:id="@+id/spinnerSun"
-                android:layout_width="match_parent"
-                android:layout_height="67dp"
-                android:layout_marginBottom="8dp" />
-
-            <Spinner
-                android:id="@+id/spinnerMoon"
-                android:layout_width="match_parent"
-                android:layout_height="58dp"
-                android:layout_marginBottom="8dp" />
-
-            <Spinner
-                android:id="@+id/spinnerRising"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginBottom="16dp" />
-
-
-
             <!-- Burç kartları -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 android:layout_marginBottom="16dp">
 
-                <TextView
-                    android:id="@+id/textSunSign"
-                    style="@style/AstroCardStyle" />
+                <!-- Güneş Burcu -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
 
-                <TextView
-                    android:id="@+id/textMoonSign"
-                    style="@style/AstroCardStyle" />
+                    <ImageView
+                        android:id="@+id/imageSunSign"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_sun_placeholder" />
 
-                <TextView
-                    android:id="@+id/textRisingSign"
-                    style="@style/AstroCardStyle" />
+                    <TextView
+                        android:id="@+id/textSunSign"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:text="Güneş"/>
+                </LinearLayout>
+
+                <!-- Ay Burcu -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageMoonSign"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_sun_placeholder" />
+
+                    <TextView
+                        android:id="@+id/textMoonSign"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:text="Ay"/>
+                </LinearLayout>
+
+                <!-- Yükselen Burç -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageRisingSign"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_sun_placeholder" />
+
+                    <TextView
+                        android:id="@+id/textRisingSign"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:text="Yükselen"/>
+                </LinearLayout>
             </LinearLayout>
 
             <!-- Buton -->

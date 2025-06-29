@@ -5,13 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import androidx.fragment.app.Fragment
-import android.content.Context
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -85,7 +79,7 @@ class ChartFragment : Fragment() {
             val gender = sharedPref.getString("gender", "") ?: ""
 
             // Doğum haritası için özel prompt oluştur
-            val prompt = GeminiHelper.createBirthChartPrompt(sun, moon, rising, gender)
+            val prompt = GeminiHelper.createAstrologyPrompt(sun, moon, rising, gender)
 
             textViewResult.text = "Interpreting your birth chart..."
             buttonGenerate.isEnabled = false // Tekrar tıklamayı önle

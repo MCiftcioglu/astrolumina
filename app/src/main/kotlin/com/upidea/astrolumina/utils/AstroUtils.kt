@@ -2,9 +2,10 @@ package com.upidea.astrolumina.utils
 
 import android.content.Context
 import android.location.Geocoder
-import java.util.Locale
 import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
+import java.util.Locale
+import java.util.TimeZone
 
 fun getSunSign(day: Int, month: Int): String {
     return when (month) {
@@ -44,6 +45,7 @@ object AstroUtils {
     fun calculateSignsViaPython(context: Context, date: String, time: String, place: String): Triple<String, String, String> {
         // Konumu geocode ile koordinata çevir
         val geocoder = Geocoder(context, Locale.getDefault())
+        @Suppress("DEPRECATION")
         val address = try {
             geocoder.getFromLocationName(place, 1)?.firstOrNull()
         } catch (e: Exception) {
@@ -51,6 +53,7 @@ object AstroUtils {
         }
         val lat = address?.latitude ?: 0.0
         val lon = address?.longitude ?: 0.0
+        val tz = TimeZone.getDefault().id
 
         if (!Python.isStarted()) {
             Python.start(AndroidPlatform(context))
@@ -59,7 +62,7 @@ object AstroUtils {
         return try {
             val py = Python.getInstance()
             val module = py.getModule("astrology_utils")
-            val result = module.callAttr("calculate_signs", date, time, lat, lon).toString()
+            val result = module.callAttr("calculate_signs", date, time, lat, lon, tz).toString()
             val parts = result.split(",")
             val sun = parts.getOrNull(0) ?: "Bilinmiyor"
             val moon = parts.getOrNull(1) ?: "Bilinmiyor"

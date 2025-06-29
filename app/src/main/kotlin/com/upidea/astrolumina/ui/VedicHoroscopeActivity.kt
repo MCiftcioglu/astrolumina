@@ -34,9 +34,9 @@ class VedicHoroscopeActivity : AppCompatActivity() {
         val birthDate = sharedPref.getString("birthDate", "N/A")
         val birthTime = sharedPref.getString("birthTime", "N/A")
         val birthPlace = sharedPref.getString("birthPlace", "N/A")
-        val sunSign = sharedPref.getString("sunSign", "N/A")
-        val moonSign = sharedPref.getString("moonSign", "N/A")
-        val risingSign = sharedPref.getString("risingSign", "N/A")
+        val sunSign = sharedPref.getString("sunSign", "") ?: ""
+        val moonSign = sharedPref.getString("moonSign", "") ?: ""
+        val risingSign = sharedPref.getString("risingSign", "") ?: ""
         val gender = sharedPref.getString("gender", "") ?: ""
 
         // Bilgilerin eksik olup olmadığını kontrol et
@@ -59,7 +59,7 @@ class VedicHoroscopeActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
-                val prompt = GeminiHelper.createVedicAstrologyPrompt(sunSign, moonSign, risingSign, gender)
+                val prompt = GeminiHelper.createAstrologyPrompt(sunSign, moonSign, risingSign, gender)
                 val result = GeminiService.getAstrologyInterpretation(prompt)
                 if (!result.isNullOrBlank()) {
                     textVedicResult.text = result

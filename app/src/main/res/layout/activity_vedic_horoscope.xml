@@ -7,12 +7,12 @@
     android:background="@drawable/bg_moon"
     android:padding="16dp">
 
-    <!-- Başlık -->
+    <!-- Title -->
     <TextView
         android:id="@+id/textVedicTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Vedik Astroloji Yorumu"
+        android:text="Vedic Astrology Reading"
         android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="@android:color/white"
@@ -21,12 +21,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="32dp"/>
 
-    <!-- Açıklama -->
+    <!-- Description -->
     <TextView
         android:id="@+id/textVedicDesc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Doğum bilgilerinize göre geleneksel Hint astrolojisine dayalı yorumunuz."
+        android:text="Your interpretation based on traditional Indian astrology according to your birth information."
         android:textSize="15sp"
         android:textColor="@android:color/white"
         android:gravity="center"
@@ -36,7 +36,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="12dp"/>
 
-    <!-- Kullanıcı Bilgileri Kartı -->
+    <!-- User Info Card -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardUserInfo"
         android:layout_width="0dp"
@@ -58,7 +58,7 @@
                 android:id="@+id/textUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ad: Elif C."
+                android:text="Name: Elif C."
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:drawableStart="@drawable/ic_name"
@@ -69,7 +69,7 @@
                 android:id="@+id/textUserBirth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Doğum: 14.03.1990 · 10:30"
+                android:text="Birth: 14.03.1990 · 10:30"
                 android:textColor="@android:color/white"
                 android:textSize="15sp"
                 android:drawableStart="@drawable/ic_name"
@@ -80,7 +80,7 @@
                 android:id="@+id/textUserPlace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Yer: Ankara, Türkiye"
+                android:text="Place: Ankara, Turkey"
                 android:textColor="@android:color/white"
                 android:textSize="15sp"
                 android:drawableStart="@drawable/ic_name"
@@ -89,7 +89,7 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Burç Bilgileri Kartı -->
+    <!-- Zodiac Signs Card -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardSigns"
         android:layout_width="0dp"
@@ -102,6 +102,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="12dp">
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -112,7 +114,7 @@
                 android:id="@+id/textMoonSign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🌕 Ay Burcu: Karka (Yengeç)"
+                android:text="🌕 Moon Sign: Karka (Cancer)"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:layout_marginBottom="4dp"/>
@@ -121,7 +123,7 @@
                 android:id="@+id/textRisingSign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🪐 Yükselen: Dhanus (Yay)"
+                android:text="🪐 Rising: Dhanus (Sagittarius)"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:layout_marginBottom="4dp"/>
@@ -130,18 +132,18 @@
                 android:id="@+id/textSunSign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="☀️ Güneş: Meena (Balık)"
+                android:text="☀️ Sun: Meena (Pisces)"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Yorum Metni -->
+    <!-- Interpretation Text -->
     <TextView
         android:id="@+id/textVedicResult"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Bugünkü enerjiniz, duygularla bağlantı kurmaya yönelik..."
+        android:text="Your energy today is focused on connecting with emotions..."
         android:textSize="15sp"
         android:textColor="@android:color/white"
         android:padding="16dp"
@@ -150,7 +152,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="12dp"/>
 
-    <!-- Premium Kartı -->
+    <!-- Premium Card -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardPremium"
         android:layout_width="0dp"
@@ -174,7 +176,7 @@
                 android:id="@+id/textPremiumDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Daha Fazlası İçin Premium’a Geçin!"
+                android:text="Go Premium for More!"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:textSize="16sp"
@@ -184,7 +186,7 @@
                 android:id="@+id/textPremiumDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vedik astrolojide nakşatra analizleri, dasa periyotları ve ruhsal yolculuğunuza özel derinlikli yorumlar almak için premium olun."
+                android:text="Get premium for nakshatra analysis, dasa periods, and in-depth interpretations for your spiritual journey in Vedic astrology."
                 android:textColor="@android:color/white"
                 android:textSize="14sp"
                 android:layout_marginBottom="8dp"/>
@@ -194,7 +196,7 @@
                 android:layout_width="349dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FFD600"
-                android:text="⭐ Premıum Ol"
+                android:text="⭐ Go Premıum"
                 android:textColor="#1A2236" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

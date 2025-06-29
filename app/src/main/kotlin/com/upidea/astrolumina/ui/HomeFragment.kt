@@ -13,7 +13,7 @@ import com.upidea.astrolumina.ui.chart.ChartActivity
 import com.upidea.astrolumina.ui.HoroscopeActivity
 import com.upidea.astrolumina.ui.match.MatchActivity
 import com.upidea.astrolumina.ui.premium.PremiumActivity
-import com.upidea.astrolumina.ui.vedic.VedicHoroscopeActivity
+import com.upidea.astrolumina.ui.VedicHoroscopeActivity
 import com.upidea.astrolumina.ui.auth.LoginActivity
 
 class HomeFragment : Fragment() {

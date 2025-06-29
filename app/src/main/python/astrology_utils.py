@@ -1,5 +1,6 @@
 import datetime
 import builtins
+import pytz
 
 SIGNS = [
     "Koç", "Boğa", "İkizler", "Yengeç", "Aslan", "Başak",
@@ -37,10 +38,13 @@ def _sun_sign(day, month):
 def _cycle_sign(index):
     return SIGNS[index % 12]
 
-def calculate_signs(date_str, time_str, latitude, longitude):
+def calculate_signs(date_str, time_str, latitude, longitude, timezone_str):
     try:
         day, month, year = map(builtins.int, date_str.split("/"))
         hour, minute = map(builtins.int, time_str.split(":"))
+
+        # Get timezone object using pytz
+        tz = pytz.timezone(timezone_str)
 
         sun_sign = _sun_sign(day, month)
 

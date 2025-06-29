@@ -30,8 +30,6 @@ android {
         }
 
         python {
-            // Kendi sistemindeki python.exe yolunu buraya yaz
-            buildPython "C:/Python39/python.exe"
             pip {
                 install "skyfield"
                 install "pytz"

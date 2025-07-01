@@ -1,29 +1,37 @@
 package com.upidea.astrolumina.ui.auth
 
-import java.util.TimeZone
+
 
 import android.content.Intent
-import android.content.Context
 import android.os.Bundle
-import android.widget.*
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.Button
+import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.upidea.astrolumina.R
 import com.upidea.astrolumina.data.local.entity.UserEntity
 import com.upidea.astrolumina.utils.AstroUtils
 import com.upidea.astrolumina.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.TimeZone
 
 @AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
 
     private val registerViewModel: RegisterViewModel by viewModels()
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
+        auth = FirebaseAuth.getInstance()
 
         val editEmail = findViewById<EditText>(R.id.editTextEmail)
         val editPassword = findViewById<EditText>(R.id.editTextPassword)
@@ -109,37 +117,36 @@ class RegisterActivity : AppCompatActivity() {
             if (email.isNotEmpty() && password.length >= 6 && name.isNotEmpty() &&
                 gender.isNotEmpty() && birthDate.isNotEmpty() && birthTime.isNotEmpty() && birthPlace.isNotEmpty()
             ) {
+                auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            val firebaseUser = auth.currentUser
+                            val uid = firebaseUser?.uid ?: ""
 
-                val (sun, moon, rising) = AstroUtils.calculateSignsViaPython(this, birthDate, birthTime, birthPlace)
+                            val (sun, moon, rising) = AstroUtils.calculateSignsViaPython(this, birthDate, birthTime, birthPlace)
 
-                val userToRegister = UserEntity(
-                    name = name,
-                    email = email,
-                    password = password,
-                    birthDate = birthDate,
-                    birthTime = birthTime,
-                    birthPlace = birthPlace,
-                    gender = gender,
-                    sunSign = sun
-                )
-                registerViewModel.registerUser(userToRegister)
+                            val userToRegister = UserEntity(
+                                uid = uid,
+                                name = name,
+                                email = email,
+                                password = password, // Not recommended to store plain password
+                                birthDate = birthDate,
+                                birthTime = birthTime,
+                                birthPlace = birthPlace,
+                                gender = gender,
+                                sunSign = sun,
+                                moonSign = moon,
+                                risingSign = rising
+                            )
+                            registerViewModel.registerUser(userToRegister)
 
-                val prefs = getSharedPreferences("AstroPrefs", Context.MODE_PRIVATE)
-                prefs.edit().apply {
-                    putString("name", name)
-                    putString("birthDate", birthDate)
-                    putString("birthTime", birthTime)
-                    putString("birthPlace", birthPlace)
-                    putString("gender", gender)
-                    putString("sunSign", sun)
-                    putString("moonSign", moon)
-                    putString("risingSign", rising)
-                    apply()
-                }
-
-                Toast.makeText(this, "Kayıt başarılı!", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
+                            Toast.makeText(this, "Kayıt başarılı!", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this, LoginActivity::class.java))
+                            finish()
+                        } else {
+                            Toast.makeText(this, "Kayıt başarısız: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                        }
+                    }
             } else {
                 Toast.makeText(this, "Lütfen tüm bilgileri eksiksiz doldurun.", Toast.LENGTH_SHORT).show()
             }

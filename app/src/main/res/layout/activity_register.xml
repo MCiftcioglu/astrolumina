@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/bg_home"
+    android:background="@drawable/bg_home8"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp">
@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="Help us understand your relationship with the stars"
             android:textSize="20sp"
-            android:textColor="#FFFFFF"
+            android:textColor="@android:color/black"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginBottom="24dp" />
@@ -26,11 +26,11 @@
             android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Adınız"
+            android:hint="Name"
             android:inputType="textPersonName"
-            android:backgroundTint="#FFFFFF"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#CCCCCC"
+            android:backgroundTint="#000000"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
             android:padding="12dp"
             android:layout_marginBottom="16dp" />
 
@@ -40,9 +40,9 @@
             android:layout_height="wrap_content"
             android:hint="E-mail"
             android:inputType="textEmailAddress"
-            android:backgroundTint="#FFFFFF"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#CCCCCC"
+            android:backgroundTint="#000000"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
             android:padding="12dp"
             android:layout_marginBottom="16dp" />
 
@@ -52,9 +52,9 @@
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword"
-            android:backgroundTint="#FFFFFF"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#CCCCCC"
+            android:backgroundTint="#000000"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
             android:padding="12dp"
             android:layout_marginBottom="16dp" />
 
@@ -64,9 +64,9 @@
             android:layout_height="wrap_content"
             android:hint="Birth Day (day/month/year)"
             android:inputType="date"
-            android:backgroundTint="#FFFFFF"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#CCCCCC"
+            android:backgroundTint="#000000"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
             android:padding="12dp"
             android:layout_marginBottom="24dp" />
         <EditText
@@ -75,9 +75,9 @@
             android:layout_height="wrap_content"
             android:hint="Birth Time (hour:minute)"
             android:inputType="time"
-            android:backgroundTint="#FFFFFF"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#CCCCCC"
+            android:backgroundTint="#000000"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
             android:padding="12dp"
             android:layout_marginBottom="16dp" />
 
@@ -87,9 +87,9 @@
             android:layout_height="wrap_content"
             android:hint="Birthplace (city)"
             android:inputType="textCapWords"
-            android:backgroundTint="#FFFFFF"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#CCCCCC"
+            android:backgroundTint="#000000"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
             android:padding="12dp"
             android:layout_marginBottom="24dp" />
 
@@ -97,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Gender:"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:layout_marginBottom="8dp" />
 
         <RadioGroup
@@ -112,14 +112,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Male"
-                android:textColor="#FFFFFF" />
+                android:textColor="#000000" />
 
             <RadioButton
                 android:id="@+id/radioFemale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Female"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:layout_marginStart="24dp" />
         </RadioGroup>
 
@@ -142,6 +142,7 @@
             android:text="Already have an account? Sign in"
             android:textColor="#89CFF0"
             android:textSize="14sp"
+            android:textStyle="bold"
             android:gravity="center"
             android:layout_marginTop="16dp" />
     </LinearLayout>

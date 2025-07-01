@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "15216685829",
+    "project_id": "astrolumina-21beb",
+    "storage_bucket": "astrolumina-21beb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:15216685829:android:3c69e56b3bd2bad8d0fd6c",
+        "android_client_info": {
+          "package_name": "com.upidea.astrolumina"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuKJg2lCJOWRrkgYnHT9-saPhIksbXTBg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,7 +5,7 @@
     android:padding="24dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_home">
+    android:background="@drawable/bg_home8">
 
     <TextView
         android:id="@+id/textPremiumInfo"
@@ -13,13 +13,13 @@
         android:layout_height="wrap_content"
         android:text="Premium açıklaması burada"
         android:textSize="16sp"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:paddingBottom="16dp" />
 
     <Button
         android:id="@+id/buttonActivate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Premium Aktif Et"
+        android:text="Actıvate Premıum"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

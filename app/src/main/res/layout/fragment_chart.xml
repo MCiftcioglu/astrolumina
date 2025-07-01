@@ -3,7 +3,7 @@
     android:id="@+id/chartRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_moon"
+    android:background="@drawable/bg_home"
     android:padding="16dp">
 
     <!-- 🌙 Arka plan -->

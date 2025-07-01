@@ -11,20 +11,22 @@
 
     <!-- Home ekranı metinleri -->
     <string name="welcome_text" translatable="false">Hoş geldin</string>
-    <string name="logout_button">Çıkış Yap</string>
-    <string name="profile_photo">Profil Fotoğrafı</string>
-    <string name="select_photo">Fotoğraf Seç</string>
-    <string name="name_hint">Adınız</string>
-    <string name="birth_date_hint">Doğum Tarihi (GG/AA/YYYY)</string>
-    <string name="birth_time_hint">Doğum Saati (SS:dd)</string>
-    <string name="birth_place_hint">Doğum Yeri</string>
-    <string name="save_button">Kaydet</string>
+    <string name="logout_button" translatable="false">Çıkış Yap</string>
+    <string name="profile_photo" translatable="false">Profil Fotoğrafı</string>
+    <string name="select_photo" translatable="false">Fotoğraf Seç</string>
+    <string name="name_hint" translatable="false">Adınız</string>
+    <string name="birth_date_hint" translatable="false">Doğum Tarihi (GG/AA/YYYY)</string>
+    <string name="birth_time_hint" translatable="false">Doğum Saati (SS:dd)</string>
+    <string name="birth_place_hint" translatable="false">Doğum Yeri</string>
+    <string name="save_button" translatable="false">Kaydet</string>
 
-    <string name="welcome_message">Hoş geldin, %1$s</string>
-    <string name="home_subtitle">Doğum haritanı keşfet, burç uyumunu öğren, astrolojinin keyfini çıkar.</string>
-    <string name="title_daily_horoscope">Günlük Burç</string>
-    <string name="title_birth_chart">Doğum Haritası</string>
-    <string name="title_cosmic_match">Kozmik Bağlantılar</string>
-    <string name="title_vedic_astrology">Vedik Astroloji</string>
+    <string name="welcome_message" translatable="false">Hoş geldin, %1$s</string>
+    <string name="home_subtitle" translatable="false">Doğum haritanı keşfet, burç uyumunu öğren, astrolojinin keyfini çıkar.</string>
+    <string name="title_daily_horoscope" translatable="false">Günlük Burç</string>
+    <string name="title_birth_chart" translatable="false">Doğum Haritası</string>
+    <string name="title_cosmic_match" translatable="false">Kozmik Bağlantılar</string>
+    <string name="title_vedic_astrology" translatable="false">Vedik Astroloji</string>
+
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
 
 </resources>

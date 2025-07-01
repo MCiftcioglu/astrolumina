@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_login"
+    android:background="@drawable/bg_home8"
     android:orientation="vertical"
     android:padding="32dp"
     android:gravity="center">
@@ -18,7 +20,7 @@
         android:layout_marginBottom="24dp"
         android:gravity="center"
         android:text="Login"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="22sp"
         android:textStyle="bold" />
 
@@ -28,9 +30,9 @@
         android:layout_height="wrap_content"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
-        android:backgroundTint="#FFFFFF"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#CCCCCC"
+        android:backgroundTint="#000000"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
         android:drawableStart="@drawable/ic_email"
         android:padding="12dp"
         android:layout_marginBottom="16dp" />
@@ -41,9 +43,9 @@
         android:layout_height="wrap_content"
         android:hint="Password"
         android:inputType="textPassword"
-        android:backgroundTint="#FFFFFF"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#CCCCCC"
+        android:backgroundTint="#000000"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
         android:drawableLeft="@drawable/ic_password"
         android:padding="12dp"
         android:layout_marginBottom="24dp" />

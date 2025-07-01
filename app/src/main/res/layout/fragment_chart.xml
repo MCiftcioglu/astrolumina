@@ -3,7 +3,7 @@
     android:id="@+id/chartRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_home"
+    android:background="@drawable/bg_home8"
     android:padding="16dp">
 
     <!-- 🌙 Arka plan -->
@@ -34,7 +34,7 @@
                 android:text="Birth Map"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:gravity="center"
                 android:layout_marginBottom="16dp" />
 
@@ -64,7 +64,7 @@
                         android:id="@+id/textSunSign"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/white"
+                        android:textColor="@android:color/black"
                         android:text="Güneş"/>
                 </LinearLayout>
 
@@ -86,7 +86,7 @@
                         android:id="@+id/textMoonSign"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/white"
+                        android:textColor="@android:color/black"
                         android:text="Ay"/>
                 </LinearLayout>
 
@@ -108,7 +108,7 @@
                         android:id="@+id/textRisingSign"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/white"
+                        android:textColor="@android:color/black"
                         android:text="Yükselen"/>
                 </LinearLayout>
             </LinearLayout>

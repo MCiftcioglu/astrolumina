@@ -28,18 +28,7 @@ class UserRepository @Inject constructor(
         return@withContext null
     }
 
-    suspend fun getUserByEmailAndPassword(email: String, password: String): UserEntity? = withContext(Dispatchers.IO) {
-        val querySnapshot = firestore.collection("users")
-            .whereEqualTo("email", email)
-            .whereEqualTo("password", password)
-            .limit(1)
-            .get()
-            .await()
-        if (!querySnapshot.isEmpty) {
-            return@withContext querySnapshot.documents[0].toObject(UserEntity::class.java)
-        }
-        return@withContext null
-    }
+    
 
     suspend fun getAllUsers(): List<UserEntity> = withContext(Dispatchers.IO) {
         userDao.getAllUsers()

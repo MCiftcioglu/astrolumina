@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.upidea.astrolumina.R
 import com.upidea.astrolumina.data.local.entity.UserEntity
+import com.upidea.astrolumina.ui.HomeActivity
 import com.upidea.astrolumina.utils.AstroUtils
 import com.upidea.astrolumina.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -129,7 +130,6 @@ class RegisterActivity : AppCompatActivity() {
                                 uid = uid,
                                 name = name,
                                 email = email,
-                                password = password, // Not recommended to store plain password
                                 birthDate = birthDate,
                                 birthTime = birthTime,
                                 birthPlace = birthPlace,
@@ -141,7 +141,9 @@ class RegisterActivity : AppCompatActivity() {
                             registerViewModel.registerUser(userToRegister)
 
                             Toast.makeText(this, "Kayıt başarılı!", Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(this, LoginActivity::class.java))
+                            val intent = Intent(this, HomeActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
                             finish()
                         } else {
                             Toast.makeText(this, "Kayıt başarısız: ${task.exception?.message}", Toast.LENGTH_SHORT).show()

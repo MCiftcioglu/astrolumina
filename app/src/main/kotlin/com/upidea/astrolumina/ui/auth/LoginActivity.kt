@@ -43,6 +43,9 @@ class LoginActivity : AppCompatActivity() {
                                     .addOnSuccessListener { document ->
                                         if (document != null && document.exists()) {
                                             val userEntity = document.toObject(com.upidea.astrolumina.data.local.entity.UserEntity::class.java)
+                                            userEntity?.let { user ->
+                                                viewModel.saveUserToLocalDb(user)
+                                            }
                                             val sharedPref = getSharedPreferences("AstroPrefs", MODE_PRIVATE)
                                             sharedPref.edit().apply {
                                                 putBoolean("isLoggedIn", true)

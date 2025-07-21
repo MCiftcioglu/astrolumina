@@ -9,10 +9,9 @@ data class UserEntity(
     var uid: String = "", // Firebase UID için eklendi
     val name: String = "",
     val email: String = "",
-    val password: String = "",
     val birthDate: String = "",
-    val birthTime: String? = null,
-    val birthPlace: String? = null,
+    val birthTime: String = "",
+    val birthPlace: String = "",
     val gender: String = "",
     val sunSign: String = "",
     val moonSign: String = "",
@@ -20,5 +19,5 @@ data class UserEntity(
     val isOnline: Boolean = false
 ) {
     // Firestore'un toObject() metodu için gerekli olan boş constructor
-    constructor() : this(0, "", "", "", "", "", null, null, "", "", "", "", false)
+    constructor() : this(0, "", "", "", "", "", "", "", "", "", "", false)
 }

@@ -23,7 +23,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         }
 
         // Gelen mesajın veri verisi var mı kontrol et
-        remoteMessage.data.isNotEmpty()?.let {
+        if (remoteMessage.data.isNotEmpty()) {
             // Veri mesajlarını burada işleyebilirsiniz
             // Örneğin: remoteMessage.data["key"] gibi
         }

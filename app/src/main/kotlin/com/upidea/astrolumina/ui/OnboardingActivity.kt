@@ -10,8 +10,9 @@ import com.upidea.astrolumina.R
 import com.upidea.astrolumina.adapters.OnboardingPagerAdapter
 import com.upidea.astrolumina.databinding.ActivityOnboardingBinding
 import com.upidea.astrolumina.model.OnboardingItem
+import com.google.firebase.auth.FirebaseAuth
+import com.upidea.astrolumina.ui.HomeActivity
 import com.upidea.astrolumina.ui.auth.LoginActivity
-import com.upidea.astrolumina.utils.OnboardingPref
 
 class OnboardingActivity : AppCompatActivity() {
 
@@ -42,6 +43,13 @@ class OnboardingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Check if user is already logged in                                                                                                                                         │
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
+            return
+            }
+
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -64,7 +72,6 @@ class OnboardingActivity : AppCompatActivity() {
             if (binding.viewPagerOnboarding.currentItem < onboardingItems.lastIndex) {
                 binding.viewPagerOnboarding.currentItem += 1
             } else {
-                OnboardingPref(this).setOnboardingSeen()
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }

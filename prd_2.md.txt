@@ -18,7 +18,7 @@ Vedik astrolojiye özel ilgi duyan premium kullanıcılar
 
 4. Ürün Kapsamı (MVP + Gelişmeler)
 
-Üretiz Özellikler:
+Ücretiz Özellikler:
 
 Giriş ve Kayıt (SharedPreferences ile oturum yönetimi)
 
@@ -34,9 +34,9 @@ Güneş, Ay ve Yükselen burç hesaplama (AstroPy + Chaquopy)
 
 Gemini API ile kişiselleştirilmiş doğum haritası yorumu
 
-Vedik Astroloji yorumları (AstroUtils ile yerel hesaplama)
+premium kullanıcılara Vedik Astroloji yorumları (AstroUtils ile yerel hesaplama)
 
-Sadece premium kullanıcılara özel içerik kartları
+premium kullanıcılara Kozmik Bağlantılar ekranı ve diğer kullanıcılarla mesajlaşma özelliği
 
 5. Fonksiyonel Gereksinimler
 
@@ -56,9 +56,8 @@ Premium olmayan kullanıcılar PremiumActivity sayfasına yönlendirilir
 
 5.3 Günlük Burç (HoroscopeFragment)
 
-Spinner ile burç seçimi, yorum gösterimi
-
-SharedPreferences üzerinden varsayılan burç belirlenir
+doğum bilgileri ile kayıt sırasında alınan bilgilerle güneş burcu hesaplanır ve günlük yorum gösterilir.
+Aşk, para ve sağlık başlıkları altında günlük burç yorumu verilir.
 
 5.4 Profil Ekranı
 
@@ -74,7 +73,6 @@ Gemini API ile kişisel yorum alma
 
 Konum bilgisi Geocoder üzerinden elde edilir
 
-Sadece premium kullanıcılar erişebilir
 
 5.6 Kozmik Bağlantılar (MatchFragment + ChatActivity)
 
@@ -82,17 +80,23 @@ Element uyumuna göre kullanıcı listeleme
 
 RecyclerView ile kullanıcı kartları
 
-ChatActivity ile demo mesajlaşma
+ChatActivity ile mesajlaşma
+
+Sadece premium kullanıcılar erişebilir
 
 5.7 Vedik Astroloji (VedicHoroscopeActivity)
 
 AstroUtils sınıfı ile doğum bilgilerine göre yerel yorumlama
+
+Sadece premium kullanıcılar erişebilir
 
 5.8 Premium Sayfası (PremiumActivity)
 
 Avantajlar listesi
 
 Premium aktivasyonu
+
+Ödeme sistemi
 
 6. Teknik Gereksinimler
 

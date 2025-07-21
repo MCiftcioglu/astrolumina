@@ -16,15 +16,10 @@ class LoginViewModel @Inject constructor(
     var loggedInUser: UserEntity? = null
         private set
 
-    fun login(email: String, password: String, onResult: (Boolean) -> Unit) {
+    fun saveUserToLocalDb(user: UserEntity) {
         viewModelScope.launch {
-            val user = userRepository.getUserByEmailAndPassword(email, password)
-            if (user != null) {
-                loggedInUser = user
-                onResult(true)
-            } else {
-                onResult(false)
-            }
+            userRepository.insertUser(user)
         }
     }
 }
+
